@@ -1,0 +1,19 @@
+body {
+margin: 1;
+}
+
+.canvas-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#canvas1 {
+  display: block;
+  background: rgb(35, 93, 40);
+  border: 1px solid silver;
+  box-shadow: 1px 1px silver;
+}
+
+
+
