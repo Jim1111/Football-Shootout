@@ -1179,28 +1179,21 @@ function Ins() {
 // Set up Bowling Ball //
 
 function SetBall(e) {
-    if (clickLeft && ctx.isPointInPath(setBowl.path, e.offsetX, e.offsetY)) {
-        x = x+20;
-        if (x >= 500) {
-            x=-dx+150;
-        }
-        Rolling = true;
+    if (clickLeft && ctx.isPointInPath(setBowl.path, e.offsetX, e.offsetY)) {    
+        textSetBall = false
     }
 }
 
 function setBall() {
-    ctx.drawImage(setBowl, w/2-65, 400, 495, 260);
+    ctx.drawImage(setBowl, w/2-65, 300, 495, 160);
     setBowl.path = new Path2D();
     setBowl.path.rect(w/2-10, 350, 600, 400);
     ctx.font='900 25px Comic Sans MS';   
 
     if (En) {
-        ctx.fillText("Move the position of the", w+10, 470);
-        ctx.fillText("bowling ball by Left Clicking", w+10, 500);
-        ctx.fillText("on this label", w, 530);
-
-        ctx.fillText("Then Right Clicking to", w+5, 575);
-        ctx.fillText("to release the ball!", w+5, 605);
+        ctx.fillText("Move the position of the", w+10, 355);
+        ctx.fillText("football player by Left Clicking", w+10, 390);
+        ctx.fillText("on the player", w, 425);
     }
     if (Ger) {
         ctx.fillText("Verschieben Sie die Position der", w+10, 470);
@@ -1838,20 +1831,36 @@ function setBall() {
 }
 
 
+function playerLck(e) {
+    if (ctx.isPointInPath(playerL.path, e.offsetX, e.offsetY)) {
+        footballPlayer = false;
+        canvas.removeEventListener("click", playerLck);
+     }
+ }
+
+ function playerRck(e) {
+    if (ctx.isPointInPath(playerR.path, e.offsetX, e.offsetY)) {
+        footballPlayer = true;
+        canvas.removeEventListener("click", playerRck);
+     }
+ }
+
 function Game() {
     ctx.drawImage(goal, 0, 0, 715, 750);
-    //ctx.drawImage(ball, x, y, 70, 70);
     ctx.drawImage(ball, w-42, y, 60, 60);
 
     if (footballPlayer) {
-    ctx.drawImage(playerL, w-180, 497, 160, 240);
+    ctx.drawImage(playerL, w-180, 480, 170, 260);
     playerL.path = new Path2D();
-    playerL.path.rect(w-190, 475, 185, 260);
+    playerL.path.rect(w-180, 480, 170, 260);
+    canvas.addEventListener("click", playerLck);
     }
+
     if (!footballPlayer) {
-    ctx.drawImage(playerR, w+15, 482, 170, 260);
+    ctx.drawImage(playerR, w-6, 480, 170, 260);
     playerR.path = new Path2D();
-    playerR.path.rect(w+15, 475, 185, 260);
+    playerR.path.rect(w-6, 480, 170, 260);
+    canvas.addEventListener("click", playerRck);
     }
 
     //ScoreBoard(); 
@@ -1884,7 +1893,7 @@ function playGame() {
         //introSpAud.currentTime = 0;
 
         if (SetBalltrue) {
-            //setBall();
+            setBall();
         }
 
         if (Rolling) {
