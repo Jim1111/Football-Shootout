@@ -19,6 +19,8 @@ var Rolling = false;
 var introSp = true;
 var wellDone = true;
 
+var footballPlayer = true;
+
 /////
 var clickLeft = true;
 /////
@@ -29,7 +31,7 @@ var round3 = false;
 
 var bowlRse = false;
 var x = 150;
-var y = 660;
+var y = 675;
 var dx = 1;
 var dy = -2;
 
@@ -122,14 +124,10 @@ settings.src = "images/settings.png";
 
 
 // sound effects
-var ballAud = new Audio("audio/bowling-ball.mp3");
-var strikeAud = new Audio("audio/strike.mp3");
-var music = new Audio("audio/music.mp3");
-var introSpAud = new Audio("audio/introSpAud.mp3");
+//var kick = new Audio("audio/kick.mp3");
 
 var letsGoAud = new Audio("audio/letsGoAud.mp3");
 var letsGoAudGer = new Audio("audio/letsGoAudGer.mp3");
-
 var letsGoAudRom = new Audio("audio/letsGoAudRom.mp3");
 var letsGoAudBul = new Audio("audio/letsGoAudBul.mp3");
 var letsGoAudGrk = new Audio("audio/letsGoAudGrk.mp3");
@@ -137,28 +135,8 @@ var letsGoAudTur = new Audio("audio/letsGoAudTur.mp3");
 
 var cheeringAud = new Audio("audio/cheering.mp3");
 
+/*var goal = new Audio("audio/goal.mp3");*/
 
-var stikeVceAud = new Audio("audio/strikeVoice.mp3");
-var stikeVceAudGer = new Audio("audio/strikeVoiceGer.mp3");
-var stikeVceAudRom = new Audio("audio/strikeVoiceRom.mp3");
-var stikeVceAudBul = new Audio("audio/strikeVoiceBul.mp3");
-var stikeVceAudGrk = new Audio("audio/strikeVoiceGrk.mp3");
-var stikeVceAudTur = new Audio("audio/strikeVoiceTur.mp3");
-
-var wellDoneAud = new Audio("audio/wellDone.mp3");
-var wellDoneAudGer = new Audio("audio/wellDoneGer.mp3");
-
-var score3Aud = new Audio("audio/score3.mp3");
-var score7Aud = new Audio("audio/score7.mp3");
-var score10Aud = new Audio("audio/score10.mp3");
-var score13Aud = new Audio("audio/score13.mp3");
-var score17Aud = new Audio("audio/score17.mp3");
-
-var score3 = true;
-var score7 = true;
-var score10 = true;
-var score13 = true;
-var score17 = true;
 
 const r2 = new Image();
 r2.src = "images/splEnd.png";
@@ -172,41 +150,20 @@ splEnd.src = "images/splEnd.png";
 const insEnd = new Image();
 insEnd.src = "images/splEnd.png";
 
-const bowlLane = new Image();
-bowlLane.src = "images/goal.png";
+const playerL = new Image();
+playerL.src = "images/playerL.png";
+
+const playerR = new Image();
+playerR.src = "images/playerR.png";
+
+const goal = new Image();
+goal.src = "images/new-goal.png";
 
 const ball = new Image();
 ball.src = "images/ball.png";
 
-const pin1 = new Image();
-pin1.src = "images/pin.png";
-
-const pin2 = new Image();
-pin2.src = "images/pin.png";
-
-const pin3 = new Image();
-pin3.src = "images/pin.png";
-
-const pin4 = new Image();
-pin4.src = "images/pin.png";
-
-const pin5 = new Image();
-pin5.src = "images/pin.png";
-
-const pin6 = new Image();
-pin6.src = "images/pin.png";
-
-const pin7 = new Image();
-pin7.src = "images/pin.png";
-
-const pin8 = new Image();
-pin8.src = "images/pin.png";
-
-const pin9 = new Image();
-pin9.src = "images/pin.png";
-
-const pin10 = new Image();
-pin10.src = "images/pin.png";
+const keeper = new Image();
+keeper.src = "images/goalkeeper.png";
 
 const setBowl = new Image();
 setBowl.src = "images/splEnd.png";
@@ -430,7 +387,7 @@ function showMenu() {
       ctx.font = "900 25px Arial"; 
     
     if (En) {
-        ctx.fillText("Music", 149, 164);
+        ctx.fillText("Cheering", 125, 164);
     }
 
     if (Ger) {
@@ -1179,12 +1136,12 @@ function Ins() {
 
 
 
-    if (introSp && speechOn) {
+    /*if (introSp && speechOn) {
         if (En) {
             introSpAud.play();
             introSp = false;
         }
-    }
+    }*/
 
     ctx.drawImage(insEnd, w/2-40, 400, 450, 200);
     ctx.font='900 50px Comic Sans MS';
@@ -1293,44 +1250,10 @@ function setBall() {
 
     // 10 skittles //
 
-    function pins() {
-
-    if (pinLeft) {
-    ctx.drawImage(pin1, 290, 120, 40, 120);
-    }
-
-    if (pinRight) {
-    ctx.drawImage(pin2, 330, 120, 40, 120);
-    ctx.drawImage(pin3, 370, 120, 40, 120);
-    }
-
-    if (pinRight) {
-    ctx.drawImage(pin4, 410, 120, 40, 120);
-    }
-
-    if (pinLeft) {
-    ctx.drawImage(pin5, 310, 140, 40, 120);
-    }
-
-    if (pinRight) {
-    ctx.drawImage(pin6, 350, 140, 40, 120);
-    ctx.drawImage(pin7, 390, 140, 40, 120);
-    }
-
-    if (pinLeft) {
-    ctx.drawImage(pin8, 330, 160, 40, 120);
-    }
-
-    if (pinRight) {
-    ctx.drawImage(pin9, 370, 160, 40, 120);
-    }
-
-    if (pinRight) {
-    ctx.drawImage(pin10, 350, 180, 40, 120);
-    }
-
-    
-
+    function goalKeeper() {
+    //if (pinLeft) {
+    ctx.drawImage(keeper, w-120, 20, 240, 230);
+    //}
     }
 
     function Round2(e) {
@@ -1783,7 +1706,7 @@ function setBall() {
        ctx.fillStyle = "white";
 
     if (En) {
-        ctx.fillText("Score: " + score, w, 70);
+        ctx.fillText("Score: " + score, w, 55);
     }
     if (Ger) {
         ctx.font='600 52px Arial';
@@ -1916,11 +1839,24 @@ function setBall() {
 
 
 function Game() {
-    ctx.drawImage(bowlLane, 0, 0, 715, 750);
-    ctx.drawImage(ball, x, y, 70, 70);
-    ScoreBoard(); 
-    pins();
-    rounds();
+    ctx.drawImage(goal, 0, 0, 715, 750);
+    //ctx.drawImage(ball, x, y, 70, 70);
+    ctx.drawImage(ball, w-42, y, 60, 60);
+
+    if (footballPlayer) {
+    ctx.drawImage(playerL, w-180, 497, 160, 240);
+    playerL.path = new Path2D();
+    playerL.path.rect(w-190, 475, 185, 260);
+    }
+    if (!footballPlayer) {
+    ctx.drawImage(playerR, w+15, 482, 170, 260);
+    playerR.path = new Path2D();
+    playerR.path.rect(w+15, 475, 185, 260);
+    }
+
+    //ScoreBoard(); 
+    goalKeeper();
+    //rounds();
 }
 
 
@@ -1944,11 +1880,11 @@ function playGame() {
   
         Game();
 
-        introSpAud.pause();
-        introSpAud.currentTime = 0;
+        //introSpAud.pause();
+        //introSpAud.currentTime = 0;
 
         if (SetBalltrue) {
-            setBall();
+            //setBall();
         }
 
         if (Rolling) {
@@ -1963,13 +1899,13 @@ function animate() {
     playGame();
 
     if (musicOn) {
-        music.play();
-        music.volume = 0.2;
+        cheeringAud.play();
+        cheeringAud.volume = 0.2;
     }
     
     if (!musicOn) {
-        music.pause();
-        music.currentTime = 0;
+        cheeringAud.pause();
+        cheeringAud.currentTime = 0;
     }
 
     requestAnimationFrame(animate);
