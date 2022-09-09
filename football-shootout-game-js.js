@@ -7,6 +7,10 @@ var clickRightTrue = true;
 // center text
 var w = canvas.width / 2;
 
+var goalUp = true;
+var leftDown = false;
+var rightDown = false;
+
 var splashSc = true;
 var insSc = false;
 var gameSc = false;
@@ -15,7 +19,7 @@ var sec = true;
 var lastScreen = false;
 var end = false;
 var score = 0;
-var Rolling = false;
+var Rolling = true;
 var introSp = true;
 var wellDone = true;
 
@@ -30,10 +34,10 @@ var round2 = false;
 var round3 = false;
 
 var bowlRse = false;
-var x = 150;
+var x = w;
 var y = 675;
 var dx = 1;
-var dy = -2;
+var dy = -4;
 
 // pins
 
@@ -157,7 +161,7 @@ const playerR = new Image();
 playerR.src = "images/playerR.png";
 
 const goal = new Image();
-goal.src = "images/new-goal.png";
+goal.src = "images/newGoal.png";
 
 const ball = new Image();
 ball.src = "images/ball.png";
@@ -165,8 +169,18 @@ ball.src = "images/ball.png";
 const keeper = new Image();
 keeper.src = "images/goalkeeper.png";
 
+const keeperDownL = new Image();
+keeperDownL.src = "images/goalkeeper-downL.png";
+
+const keeperDownR = new Image();
+keeperDownR.src = "images/goalkeeper-downR.png";
+
 const setBowl = new Image();
 setBowl.src = "images/splEnd.png";
+
+
+
+
 
 ////// music change ///////////////////
 ///////////////////////////////////////
@@ -387,7 +401,7 @@ function showMenu() {
       ctx.font = "900 25px Arial"; 
     
     if (En) {
-        ctx.fillText("Cheering", 125, 164);
+        ctx.fillText("Croud Noise", 100, 164);
     }
 
     if (Ger) {
@@ -1180,20 +1194,25 @@ function Ins() {
 
 function SetBall(e) {
     if (clickLeft && ctx.isPointInPath(setBowl.path, e.offsetX, e.offsetY)) {    
-        textSetBall = false
+        Rolling = true;
+        clickRightTrue = true;
     }
 }
 
 function setBall() {
-    ctx.drawImage(setBowl, w/2-65, 300, 495, 160);
+    ctx.drawImage(setBowl, w/2-65, 225, 495, 265);
     setBowl.path = new Path2D();
     setBowl.path.rect(w/2-10, 350, 600, 400);
-    ctx.font='900 25px Comic Sans MS';   
+    ctx.font='900 22px Comic Sans MS';
 
     if (En) {
-        ctx.fillText("Move the position of the", w+10, 355);
-        ctx.fillText("football player by Left Clicking", w+10, 390);
-        ctx.fillText("on the player", w, 425);
+        ctx.fillStyle = "black";
+        ctx.fillText("Move the position of the", w+10, 300);
+        ctx.fillText("football player by Left Clicking", w+10, 340);
+        ctx.fillText("on the player", w, 380);
+        ctx.fillStyle = "blue";
+        ctx.fillText("Then Right Click Here to Shoot!", w, 430);
+        ctx.fillStyle = "black";
     }
     if (Ger) {
         ctx.fillText("Verschieben Sie die Position der", w+10, 470);
@@ -1241,12 +1260,16 @@ function setBall() {
     canvas.addEventListener("click", SetBall);
 }
 
-    // 10 skittles //
-
     function goalKeeper() {
-    //if (pinLeft) {
+    if (goalUp) {   
     ctx.drawImage(keeper, w-120, 20, 240, 230);
-    //}
+    }
+    if (leftDown) {
+    ctx.drawImage(keeperDownL, w-270, 70, 210, 150);
+    }
+    if (rightDown) {
+    ctx.drawImage(keeperDownR, w+60, 70, 210, 150);
+    }
     }
 
     function Round2(e) {
@@ -1722,6 +1745,16 @@ function setBall() {
 
     }
 
+    function leftD() {
+        goalUp = false;
+        leftDown = true;
+    }
+
+    function rightD() {
+        goalUp = false;
+        rightDown = true;
+    }
+
     function rolling() {
 
     
@@ -1739,15 +1772,29 @@ function setBall() {
     if (bowlRse) {
 
         if (effectsOn) {
-            ballAud.play();
+            //ballAud.play();
         }
 
-        y += dy;
+        if (footballPlayer) {
+            x += dx;
+            y += dy;
+            
+            //leftDown = true;
+            setTimeout(leftD, 1250); 
+        }
+
+        if (!footballPlayer) {
+            x -= dx;
+            y += dy;
+
+            //rightDown = true;
+            setTimeout(rightD, 1250); 
+        }
     }
 
 
     if (pinLeft && pinRight && round1) {
-        if (x >= 320 && x <= 335 && y <= 180) { 
+        if (x >= 320 && x <= 335 && y <= 190) { 
 
             if (speechOn) {
                 cheeringAud.play();
@@ -1786,12 +1833,12 @@ function setBall() {
     }
 
     if (pinLeft) {
-    if (x >= 215 && x <= 300 && y < 180) {
+    if (x >= 215 && x <= 300 && y < 190) {
             pinLeft = false;
             strikeTar = false;
 
             if (effectsOn) {
-                strikeAud.play();
+                //strikeAud.play();
             }
 
             score=score+3;
@@ -1799,7 +1846,7 @@ function setBall() {
     }
 
     if (pinRight) {
-    if (x >= 301 && x <= 430 && y < 180) {
+    if (x >= 301 && x <= 430 && y < 190) {
             pinRight = false;
             strikeTar = false;
 
@@ -1811,13 +1858,14 @@ function setBall() {
         }
     }  
 
-    if (y < 180) {
+    if (y < 50) {
         Rolling = false;
-        ballAud.pause();
-        ballAud.currentTime = 0;
-        y=-200;
+        //ballAud.pause();
+        //ballAud.currentTime = 0;
         round1 = false;
         Rolling = false;
+
+        y = 140;
 
     if (sec) {
         round2 = true;
@@ -1825,7 +1873,7 @@ function setBall() {
 
     if (lastScreen) {
         end = true;
-    }
+    } 
 
     }
 }
@@ -1847,19 +1895,20 @@ function playerLck(e) {
 
 function Game() {
     ctx.drawImage(goal, 0, 0, 715, 750);
-    ctx.drawImage(ball, w-42, y, 60, 60);
+
+    ctx.drawImage(ball, x-28, y, 60, 60);
 
     if (footballPlayer) {
-    ctx.drawImage(playerL, w-180, 480, 170, 260);
+    ctx.drawImage(playerL, w-170, 480, 170, 260);
     playerL.path = new Path2D();
-    playerL.path.rect(w-180, 480, 170, 260);
+    playerL.path.rect(w-170, 480, 170, 260);
     canvas.addEventListener("click", playerLck);
     }
 
     if (!footballPlayer) {
-    ctx.drawImage(playerR, w-6, 480, 170, 260);
+    ctx.drawImage(playerR, w+2, 480, 170, 260);
     playerR.path = new Path2D();
-    playerR.path.rect(w-6, 480, 170, 260);
+    playerR.path.rect(w+2, 480, 170, 260);
     canvas.addEventListener("click", playerRck);
     }
 
