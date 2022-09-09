@@ -401,7 +401,7 @@ function showMenu() {
       ctx.font = "900 25px Arial"; 
     
     if (En) {
-        ctx.fillText("Croud Noise", 100, 164);
+        ctx.fillText("Crowd Noise", 100, 164);
     }
 
     if (Ger) {
