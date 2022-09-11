@@ -33,6 +33,9 @@ var round1 = true;
 var round2 = false;
 var round3 = false;
 
+var g1 = w-120;
+var dg1 = 0.4;
+
 var bowlRse = false;
 var x = w;
 var y = 675;
@@ -1117,8 +1120,8 @@ function Ins() {
 
     if (En) {
         ctx.fillText("It's gone to penalties!", w, 260);
-        ctx.fillText("You have 5 chances to score a goal", w, 310);
-        ctx.fillText("See how many you can score!", w, 360);
+        //ctx.fillText("You have 5 chances to score a goal", w, 310);
+        //ctx.fillText("See how many you can score!", w, 360);
     }
     if (Ger) {
         ctx.font='700 25px Comic Sans MS';
@@ -1260,9 +1263,18 @@ function setBall() {
     canvas.addEventListener("click", SetBall);
 }
 
+
+
     function goalKeeper() {
-    if (goalUp) {   
-    ctx.drawImage(keeper, w-120, 20, 240, 230);
+    if (goalUp) { 
+    
+    if (g1>270 || g1<200) {
+    dg1 = -dg1;
+    }
+
+    g1 += dg1;
+
+    ctx.drawImage(keeper, g1, 20, 240, 230);
     }
     if (leftDown) {
     ctx.drawImage(keeperDownL, w-270, 70, 210, 150);
@@ -1275,8 +1287,19 @@ function setBall() {
     function Round2(e) {
         if (ctx.isPointInPath(r2.path, e.offsetX, e.offsetY)) {
             clickLeft = true;
-            x = 150;
-            y = 660;
+
+            if (leftDown || rightDown) {
+                score+=1;
+            }
+            
+            goalUp = true;
+            leftDown = false;
+            rightDown = false;
+
+            x = w;
+            y = 675;
+
+
             bowlRse = false;
             round2 = false;
             lastScreen = true;
@@ -1297,8 +1320,11 @@ function setBall() {
      function End(e) {
         if (ctx.isPointInPath(r3.path, e.offsetX, e.offsetY)) {
             clickLeft = true;
-            x = 150;
-            y = 660;
+            goalUp = true;
+            leftDown = false;
+            rightDown = false;
+            x = w;
+            y = 675;
             sec = true;
             bowlRse = false;
             pinLeft = true;
@@ -1323,148 +1349,70 @@ function setBall() {
      
 
     function rounds() {
-
         if (round2) {
-            ctx.drawImage(r2, w/2-40, 400, 450, 200);
+            ctx.drawImage(r2, w/2-100, 200, 565, 300);
             ctx.textAlign = "center"; 
-            ctx.font='900 60px Comic Sans MS';
+            ctx.font='900 90px Comic Sans MS';
 
-            if (strikeTar) {
-                ctx.fillStyle = "blue";      
+            if (!goalUp && (leftDown || rightDown)) {
 
-                if (En) {
-                    ctx.fillText("Strike!", w+10, 484);    
-                }
-                if (Ger) {
-                    ctx.fillText("Schlagen!", w+10, 484); 
-                }
-                if (Rom) {
-                    ctx.fillText("lovitură!", w+10, 484); 
-                }
-                if (Bul) {
-                    ctx.fillText("попадение!", w+10, 484); 
-                }
-                if (Grk) {
-                    ctx.fillText("Απεργία!", w+10, 484); 
-                }
-                if (Tuk) {
-                    ctx.fillText("Vuruş!", w+10, 484); 
-                }
-
-                ctx.fillStyle = "black";
-                ctx.font='900 19px Comic Sans MS';
-
-                
-
-                if (En) {
-                    ctx.fillText("You knocked down " + score + " skittles so far!", w, 518);
-                    ctx.fillText("Let's throw the 2nd ball now!", w+10, 552);     
-                }
-                if (Ger) {
-                    ctx.fillText("Du hast zugeschlagen " + score + " Kegel bisher!", w, 518);
-                    ctx.fillText("Lass uns jetzt den 2. Ball werfen!", w+10, 552);
-                }
-                if (Rom) {
-                    ctx.fillText("Ai dat jos " + score + " skittles pana acum!", w, 518);
-                    ctx.fillText("Să aruncăm a 2-a minge acum!", w+10, 552); 
-                }
-                if (Bul) {
-                    ctx.fillText("Ти събори " + score + " кегли досега!", w, 518);
-                    ctx.fillText("Хайде да хвърлим втората топка сега!", w+10, 552);
-                }
-                if (Grk) {
-                    ctx.fillText("γκρέμισες " + score + " κορύνες μέχρι στιγμής!", w, 518);
-                    ctx.fillText("Ας ρίξουμε τη 2η μπάλα τώρα!", w+10, 552);
-                }
-                if (Tuk) {
-                    ctx.fillText("sen düşürdün " + score + " şimdiye kadar skeçler!", w, 518);
-                    ctx.fillText("Şimdi 2. topu atalım!", w+10, 552);
-                }
-            }
-
-            if (!strikeTar) {
-                ctx.font='900 25px Comic Sans MS';
-                
-                if (En) {
-                    ctx.fillText("You knocked down", w, 456);    
-                }
-                if (Ger) {
-                    ctx.fillText("Du hast zugeschlagen", w, 456); 
-                }
-                if (Rom) {
-                    ctx.fillText("Ai dat jos", w, 456); 
-                }
-                if (Bul) {
-                    ctx.fillText("Ти събори", w, 456); 
-                }
-                if (Grk) {
-                    ctx.fillText("γκρέμισες", w, 456); 
-                }
-                if (Tuk) {
-                    ctx.fillText("sen düşürdün", w, 456); 
-                }
-
-                ctx.font='900 35px Comic Sans MS';
                 ctx.fillStyle = "blue";
-                ctx.fillText(score, w, 494);
-                ctx.font='900 25px Comic Sans MS';
-                ctx.fillStyle = "black";
-                
+                ctx.font='900 100px Comic Sans MS';
+
                 if (En) {
-                    ctx.fillText("skittles so far!", w, 520); 
-                }
-                if (Ger) {
-                    ctx.fillText("Kegel bisher!", w, 520); 
-                }
-                if (Rom) {
-                    ctx.fillText("skittles pana acum!", w, 520); 
-                }
-                if (Bul) {
-                    ctx.fillText("кегли досега!", w, 520); 
-                }
-                if (Grk) {
-                    ctx.fillText("κορύνες μέχρι στιγμής!", w, 520); 
-                }
-                if (Tuk) {
-                    ctx.fillText("şimdiye kadar skeçler!", w, 520); 
+                    ctx.fillText("Goal!", w, 335);
+                    ctx.font='900 50px Comic Sans MS';
+                    score=1;
+                    ctx.fillText("Score: " + score, w, 395);
+                    ctx.fillStyle = "black";
+                    ctx.font='900 23px Comic Sans MS';
+                    ctx.fillText("Click here for the next penalty!", w+10, 440);
                 }
 
-                ctx.font='900 19px Comic Sans MS';
-                
-                if (En) {
-                    ctx.fillText("Let's throw the 2nd ball now!", w+4, 556);
-                }
                 if (Ger) {
-                    ctx.fillText("Lass uns jetzt den 2. Ball werfen!", w+4, 556); 
+                    ctx.font='600 52px Arial';
+                    ctx.fillText("Punktzahl: " + score, w, 70);
                 }
                 if (Rom) {
-                    ctx.fillText("Să aruncăm a 2-a minge acum!", w+4, 556); 
+                    ctx.fillText("Scor: " + score, w, 70);
                 }
                 if (Bul) {
-                    ctx.fillText("Хайде да хвърлим втората топка сега!", w+4, 556); 
+                    ctx.fillText("резултат: " + score, w, 70);
                 }
                 if (Grk) {
-                    ctx.fillText("Ας ρίξουμε τη 2η μπάλα τώρα!", w+4, 556); 
+                    ctx.fillText("Σκορ: " + score, w, 70);
                 }
                 if (Tuk) {
-                    ctx.fillText("Şimdi 2. topu atalım!", w+4, 556); 
+                    ctx.fillText("Puan: " + score, w, 70);
                 }
+               
             }
-
             r2.path = new Path2D();
-            r2.path.rect(w/2-40, 465, 450, 200);
+            r2.path.rect(w/2-100, 200, 565, 300);
             sec = false;
             canvas.addEventListener("click", Round2);
         }
 
         if (end) {
-            ctx.drawImage(r3, w/2-40, 400, 450, 200);
+            ctx.drawImage(r3, w/2-100, 200, 565, 300);
             ctx.textAlign = "center"; 
-            ctx.font='900 35px Comic Sans MS';
+            ctx.font='900 60px Comic Sans MS';
+            ctx.fillStyle = "blue";
 
             if (En) {
-                ctx.fillText("Game Over!", w+10, 475);
+                ctx.fillText("Game Over!", w+10, 300);
+                ctx.font='900 40px Comic Sans MS';
+                
+                if (score >= 1 && score <= 1) {
+                   ctx.fillText("You scored " + score + " Goal!", w+10, 350);
+                }
+
+                if (score <= 2) {
+                    ctx.fillText("You scored " + score + " Goals!", w+10, 350);
+                }
+
             }
+
             if (Ger) {
                 ctx.fillText("Spiel ist aus!", w+10, 475);
             }
@@ -1481,209 +1429,13 @@ function setBall() {
                 ctx.fillText("Oyun bitti!", w+10, 475);
             }
             
-
-            if (score >= 0 && score <= 1) {
-                if (En) {
-                    ctx.font='900 25px Comic Sans MS';
-                    ctx.fillText("Better luck next time!", w+10, 510);
-                    ctx.fillText("Click Here to Play Again", w+10, 545);
-                }
-                if (Ger) {
-                    ctx.fillText("Viel Glück beim nächsten Mal!", w+10, 510);
-                    ctx.fillText("Klicken Sie hier, um erneut zu spielen", w+10, 545);
-                }
-                if (Rom) {
-                    ctx.fillText("Mai mult noroc data viitoare!", w+10, 510);
-                    ctx.fillText("Faceți clic aici pentru a juca din nou", w+10, 545);
-                }
-                if (Bul) {
-                    ctx.fillText("По-добър късмет следващия път!", w+10, 510);
-                    ctx.fillText("Щракнете тук, за да играете отново", w+10, 545);
-                }
-                if (Grk) {
-                    ctx.fillText("Καλύτερη τύχη την επόμενη φορά!", w+10, 510);
-                    ctx.fillText("Κάντε κλικ εδώ για να παίξετε ξανά", w+10, 545);
-                }
-                if (Tuk) {
-                    ctx.fillText("Bir dahaki sefere daha iyi şanslar!", w+10, 510);
-                    ctx.fillText("Tekrar Oynamak İçin Buraya Tıklayın", w+10, 545);
-                }
-                
-            }
-
-            if (score > 2) {  
-                
-            ctx.font='900 16px Comic Sans MS';
-
-            if (En) {
-                ctx.font='900 20px Comic Sans MS';
-                ctx.fillText("You knocked down " + score + " skittles", w+10, 511);
-            }
-            if (Ger) {
-                ctx.fillText("Du hast zugeschlagen " + score + " Kegeln ", w+10, 511);
-            }
-            if (Rom) {
-                ctx.fillText("Ai dat jos " + score + " chile ", w+10, 511);
-            }
-            if (Bul) {
-                ctx.fillText("Ти събори " + score + " кегли ", w+10, 511);
-            }
-            if (Grk) {
-                ctx.fillText("γκρέμισες " + score + " κορύνες ", w+10, 511);
-            }
-            if (Tuk) {
-                ctx.fillText("sen düşürdün " + score + " kukalar ", w+10, 511);
-            }
-                
-            if (score3 && score >= 1 && score <= 3) {
-                if (speechOn) {               
-                    if (En) {
-                        score3Aud.play();
-                    }
-                    if (Ger) {
-                        //score3Aud.play();
-                    }
-                    if (Rom) {
-                        //score3Aud.play();
-                    }
-                    if (Bul) {
-                        //score3Aud.play();
-                    }
-                    if (Grk) {
-                        //score3Aud.play();
-                    }
-                    if (Tuk) {
-                        //score3Aud.play();
-                    }
-                    score3 = false;
-                }
-            }
-
-            if (score7 && score >= 4 && score <= 7) {
-                if (speechOn) {         
-                    if (En) {
-                        score7Aud.play();
-                    }
-                    if (Ger) {
-                        //score3Aud.play();
-                    }
-                    if (Rom) {
-                        //score3Aud.play();
-                    }
-                    if (Bul) {
-                        //score3Aud.play();
-                    }
-                    if (Grk) {
-                        //score3Aud.play();
-                    }
-                    if (Tuk) {
-                        //score3Aud.play();
-                    }
-                    score7 = false;
-                }
-            }
-
-            if (score10 && score >= 8 && score <= 10) {
-                if (speechOn) {
-                    if (En) {
-                        score10Aud.play();
-                    }
-                    if (Ger) {
-                        //score3Aud.play();
-                    }
-                    if (Rom) {
-                        //score3Aud.play();
-                    }
-                    if (Bul) {
-                        //score3Aud.play();
-                    }
-                    if (Grk) {
-                        //score3Aud.play();
-                    }
-                    if (Tuk) {
-                        //score3Aud.play();
-                    }
-                    score10 = false;
-                }
-            }
-
-            if (score13 && score >= 11 && score <= 13) {
-                if (speechOn) {                
-                    if (En) {
-                        score13Aud.play();
-                    }
-                    if (Ger) {
-                        //score3Aud.play();
-                    }
-                    if (Rom) {
-                        //score3Aud.play();
-                    }
-                    if (Bul) {
-                        //score3Aud.play();
-                    }
-                    if (Grk) {
-                        //score3Aud.play();
-                    }
-                    if (Tuk) {
-                        //score3Aud.play();
-                    }
-                    score13 = false;
-                }
-            }
-
-            if (score17 && score >= 14 && score <= 17) {
-                if (speechOn) {
-                    if (En) {
-                        score17Aud.play();
-                    }
-                    if (Ger) {
-                        //score3Aud.play();
-                    }
-                    if (Rom) {
-                        //score3Aud.play();
-                    }
-                    if (Bul) {
-                        //score3Aud.play();
-                    }
-                    if (Grk) {
-                        //score3Aud.play();
-                    }
-                    if (Tuk) {
-                        //score3Aud.play();
-                    }
-                    score17 = false;
-                }
-            }
-
-            if (wellDone) {
-                if (speechOn) {
-                    if (En) {
-                        wellDoneAud.play();
-                    }
-                    if (Ger) {
-                        wellDoneAudGer.play();
-                    }
-                    if (Rom) {
-                        //score3Aud.play();
-                    }
-                    if (Bul) {
-                        //score3Aud.play();
-                    }
-                    if (Grk) {
-                        //score3Aud.play();
-                    }
-                    if (Tuk) {
-                        //score3Aud.play();
-                    }
-                    wellDone = false;
-                }
-            }
-
+            ctx.fillStyle = "black";
             ctx.font='900 14px Comic Sans MS';
 
             if (En) {
-                ctx.font='900 20px Comic Sans MS';
-                ctx.fillText("Well Done! - Click Here to Play Again", w+10, 545);
+                ctx.font='900 30px Comic Sans MS';
+                ctx.fillText("Well Done!", w+10, 395);
+                ctx.fillText("Click Here to Play Again", w+10, 440);
             }
             if (Ger) {
                 ctx.fillText("Gut erledigt! - Klicken Sie hier, um erneut zu spielen", w+10, 545);
@@ -1701,49 +1453,25 @@ function setBall() {
                 ctx.fillText("Aferin! - Tekrar Oynamak İçin Buraya Tıklayın", w+10, 545);
             }
             
-        }
-
             r3.path = new Path2D();
-            r3.path.rect(w/2-40, 400, 700, 700);
+            r3.path.rect(w/2-100, 200, 565, 300);
             lastScreen = false;
        
             canvas.addEventListener("click", End);
 
         }
 
+        
+
     }
 
 
 
-    function ScoreBoard() {
 
-       ctx.textAlign = "center"; 
-       ctx.font='600 55px Arial';
-       ctx.fillStyle = "white";
 
-    if (En) {
-        ctx.fillText("Score: " + score, w, 55);
-    }
-    if (Ger) {
-        ctx.font='600 52px Arial';
-        ctx.fillText("Punktzahl: " + score, w, 70);
-    }
-    if (Rom) {
-        ctx.fillText("Scor: " + score, w, 70);
-    }
-    if (Bul) {
-        ctx.fillText("резултат: " + score, w, 70);
-    }
-    if (Grk) {
-        ctx.fillText("Σκορ: " + score, w, 70);
-    }
-    if (Tuk) {
-        ctx.fillText("Puan: " + score, w, 70);
-    }
 
-    ctx.fillStyle = "black";
 
-    }
+
 
     function leftD() {
         goalUp = false;
@@ -1755,9 +1483,10 @@ function setBall() {
         rightDown = true;
     }
 
+
+
     function rolling() {
 
-    
     window.addEventListener('contextmenu', (e) => {
         if (clickRightTrue) {
            clickLeft = false;
@@ -1778,17 +1507,13 @@ function setBall() {
         if (footballPlayer) {
             x += dx;
             y += dy;
-            
-            //leftDown = true;
-            setTimeout(leftD, 1250); 
+            setTimeout(leftD, 1400);
         }
 
         if (!footballPlayer) {
             x -= dx;
             y += dy;
-
-            //rightDown = true;
-            setTimeout(rightD, 1250); 
+            setTimeout(rightD, 1400); 
         }
     }
 
@@ -1894,9 +1619,14 @@ function playerLck(e) {
  }
 
 function Game() {
+
+    
+
     ctx.drawImage(goal, 0, 0, 715, 750);
 
     ctx.drawImage(ball, x-28, y, 60, 60);
+
+    
 
     if (footballPlayer) {
     ctx.drawImage(playerL, w-170, 480, 170, 260);
@@ -1912,9 +1642,8 @@ function Game() {
     canvas.addEventListener("click", playerRck);
     }
 
-    //ScoreBoard(); 
     goalKeeper();
-    //rounds();
+    rounds();
 }
 
 
