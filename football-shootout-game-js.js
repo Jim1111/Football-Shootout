@@ -144,6 +144,8 @@ var cheeringAud = new Audio("audio/cheering.mp3");
 
 /*var goal = new Audio("audio/goal.mp3");*/
 
+const splash_img = new Image();
+splash_img.src = "images/splash_img.png";
 
 const r2 = new Image();
 r2.src = "images/splEnd.png";
@@ -939,6 +941,7 @@ function settingsOpen(e) {
     }
 
 function Splash() {
+    ctx.drawImage(splash_img, 0, 0, 800, 800);
     ctx.drawImage(settings, 600, 0, 80, 80);
     settings.path = new Path2D();
     settings.path.rect(600, 0, 100, 100);
@@ -1086,6 +1089,7 @@ function InsEnd(e) {
  } 
 
 function Ins() {
+    ctx.drawImage(splash_img, 0, 0, 800, 800);
     ctx.textAlign = "center";
     ctx.fillStyle = "white";
     ctx.fillRect(50, 80, 616, 550);  
@@ -1337,11 +1341,6 @@ function setBall() {
             splashSc = true;
             score=0;
             wellDone = true;
-            score3 = true;
-            score7 = true;
-            score10 = true;
-            score13 = true;
-            score17 = true;
             canvas.removeEventListener("click", End);
          }
      } 
