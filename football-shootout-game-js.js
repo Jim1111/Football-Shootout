@@ -15,10 +15,15 @@ var splashSc = true;
 var insSc = false;
 var gameSc = false;
 var SetBalltrue = true;
+
 var sec = true;
+var thd = false;
+var foth = false;
+var fith = false;
 var lastScreen = false;
-var end = false;
-var score = 0;
+
+
+var score = 1;
 var Rolling = true;
 var introSp = true;
 var wellDone = true;
@@ -32,6 +37,9 @@ var clickLeft = true;
 var round1 = true;
 var round2 = false;
 var round3 = false;
+var round4 = false;
+var round5 = false;
+var end = false;
 
 var g1 = w-120;
 var dg1 = 0.4;
@@ -1288,36 +1296,34 @@ function setBall() {
     }
     }
 
+    function Rd() {
+        score++;
+        clickLeft = true;      
+        goalUp = true;
+        leftDown = false;
+        rightDown = false;
+        x = w;
+        y = 675;
+        bowlRse = false;
+        SetBalltrue = true;
+        clickRightTrue = false;
+    }
+
     function Round2(e) {
         if (ctx.isPointInPath(r2.path, e.offsetX, e.offsetY)) {
-            clickLeft = true;
-
-            if (leftDown || rightDown) {
-                score+=1;
-            }
-            
-            goalUp = true;
-            leftDown = false;
-            rightDown = false;
-
-            x = w;
-            y = 675;
-
-
-            bowlRse = false;
+            Rd();
             round2 = false;
-            lastScreen = true;
-            SetBalltrue = true;
-
-            clickRightTrue = false;
-
-
-            if (strikeTar) {
-                pinLeft = true;
-                pinRight = true;
-            }
-
+            thd = true;
             canvas.removeEventListener("click", Round2);
+         }
+     } 
+
+     function Round3(e) {
+        if (ctx.isPointInPath(r2.path, e.offsetX, e.offsetY)) {
+            Rd();
+            round3 = false;
+            lastScreen = true;
+            canvas.removeEventListener("click", Round3);
          }
      } 
 
@@ -1339,7 +1345,7 @@ function setBall() {
             lastScreen = false;
             SetBalltrue = true;
             splashSc = true;
-            score=0;
+            score=1;
             wellDone = true;
             canvas.removeEventListener("click", End);
          }
@@ -1361,7 +1367,6 @@ function setBall() {
                 if (En) {
                     ctx.fillText("Goal!", w, 335);
                     ctx.font='900 50px Comic Sans MS';
-                    score=1;
                     ctx.fillText("Score: " + score, w, 395);
                     ctx.fillStyle = "black";
                     ctx.font='900 23px Comic Sans MS';
@@ -1392,6 +1397,49 @@ function setBall() {
             canvas.addEventListener("click", Round2);
         }
 
+        if (round3) {
+            ctx.drawImage(r2, w/2-100, 200, 565, 300);
+            ctx.textAlign = "center"; 
+            ctx.font='900 90px Comic Sans MS';
+
+            if (!goalUp && (leftDown || rightDown)) {
+
+                ctx.fillStyle = "blue";
+                ctx.font='900 100px Comic Sans MS';
+
+                if (En) {
+                    ctx.fillText("Goal!", w, 335);
+                    ctx.font='900 50px Comic Sans MS';
+                    ctx.fillText("Score: " + score, w, 395);
+                    ctx.fillStyle = "black";
+                    ctx.font='900 23px Comic Sans MS';
+                    ctx.fillText("Click here for the next penalty!", w+10, 440);
+                }
+
+                if (Ger) {
+                    ctx.font='600 52px Arial';
+                    ctx.fillText("Punktzahl: " + score, w, 70);
+                }
+                if (Rom) {
+                    ctx.fillText("Scor: " + score, w, 70);
+                }
+                if (Bul) {
+                    ctx.fillText("резултат: " + score, w, 70);
+                }
+                if (Grk) {
+                    ctx.fillText("Σκορ: " + score, w, 70);
+                }
+                if (Tuk) {
+                    ctx.fillText("Puan: " + score, w, 70);
+                }
+               
+            }
+            r2.path = new Path2D();
+            r2.path.rect(w/2-100, 200, 565, 300);
+            thd = false;
+            canvas.addEventListener("click", Round3);
+        }
+
         if (end) {
             ctx.drawImage(r3, w/2-100, 200, 565, 300);
             ctx.textAlign = "center"; 
@@ -1406,7 +1454,7 @@ function setBall() {
                    ctx.fillText("You scored " + score + " Goal!", w+10, 350);
                 }
 
-                if (score <= 2) {
+                if (score >= 2 && score <=5) {
                     ctx.fillText("You scored " + score + " Goals!", w+10, 350);
                 }
 
@@ -1552,7 +1600,7 @@ function setBall() {
                 strikeAud.play();
             }
 
-            score=score+10;
+            //score=score+10;
         }
     }
 
@@ -1565,7 +1613,7 @@ function setBall() {
                 //strikeAud.play();
             }
 
-            score=score+3;
+            //score=score+3;
         }
     }
 
@@ -1578,7 +1626,7 @@ function setBall() {
                 strikeAud.play();
             }
 
-            score=score+7;
+            //score=score+7;
         }
     }  
 
@@ -1593,6 +1641,10 @@ function setBall() {
 
     if (sec) {
         round2 = true;
+    }
+
+    if (thd) {
+        round3 = true;
     }
 
     if (lastScreen) {
