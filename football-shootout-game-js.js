@@ -50,11 +50,6 @@ var y = 675;
 var dx = 1;
 var dy = -4;
 
-// pins
-
-var pinLeft = true;
-var pinRight = true;
-var strikeTar = false;
 
 
 
@@ -1132,8 +1127,8 @@ function Ins() {
 
     if (En) {
         ctx.fillText("It's gone to penalties!", w, 260);
-        //ctx.fillText("You have 5 chances to score a goal", w, 310);
-        //ctx.fillText("See how many you can score!", w, 360);
+        ctx.fillText("You have 5 chances to score a goal", w, 310);
+        ctx.fillText("See how many you can score!", w, 360);
     }
     if (Ger) {
         ctx.font='700 25px Comic Sans MS';
@@ -1297,7 +1292,11 @@ function setBall() {
     }
 
     function Rd() {
-        score++;
+
+        if (leftDown || rightDown) {
+            score++;
+        }
+
         clickLeft = true;      
         goalUp = true;
         leftDown = false;
@@ -1322,8 +1321,26 @@ function setBall() {
         if (ctx.isPointInPath(r2.path, e.offsetX, e.offsetY)) {
             Rd();
             round3 = false;
-            lastScreen = true;
+            foth = true;
             canvas.removeEventListener("click", Round3);
+         }
+     } 
+
+     function Round4(e) {
+        if (ctx.isPointInPath(r2.path, e.offsetX, e.offsetY)) {
+            Rd();
+            round4 = false;
+            fith = true;
+            canvas.removeEventListener("click", Round4);
+         }
+     } 
+
+     function Round5(e) {
+        if (ctx.isPointInPath(r2.path, e.offsetX, e.offsetY)) {
+            Rd();
+            round5 = false;
+            lastScreen = true;
+            canvas.removeEventListener("click", Round5);
          }
      } 
 
@@ -1351,93 +1368,102 @@ function setBall() {
          }
      } 
 
-     
+
+     function Goals() {
+            ctx.fillStyle = "blue";
+            ctx.font='900 100px Comic Sans MS';
+
+            if (En) {
+                ctx.fillText("Goal!", w, 335);
+            }
+            if (Ger) {
+                ctx.font='600 52px Arial';
+                ctx.fillText("Punktzahl: " + score, w, 70);
+            }
+            if (Rom) {
+                ctx.fillText("Scor: " + score, w, 70);
+            }
+            if (Bul) {
+                ctx.fillText("резултат: " + score, w, 70);
+            }
+            if (Grk) {
+                ctx.fillText("Σκορ: " + score, w, 70);
+            }
+            if (Tuk) {
+                ctx.fillText("Puan: " + score, w, 70);
+            }            
+     }
+
+     function noGoal() {
+        ctx.fillStyle = "Red";
+            ctx.font='900 100px Comic Sans MS';
+
+            if (En) {
+                ctx.fillText("No Goal!", w, 335);
+            }
+            if (Ger) {
+                ctx.font='600 52px Arial';
+                ctx.fillText("Punktzahl: " + score, w, 70);
+                }
+            if (Rom) {
+                ctx.fillText("Scor: " + score, w, 70);
+                }
+            if (Bul) {
+                ctx.fillText("резултат: " + score, w, 70);
+                }
+            if (Grk) {
+                ctx.fillText("Σκορ: " + score, w, 70);
+                }
+            if (Tuk) {
+                ctx.fillText("Puan: " + score, w, 70);
+                }            
+     }
+
+    function levels() {
+        ctx.drawImage(r2, w/2-100, 200, 565, 300);
+        ctx.textAlign = "center"; 
+
+        if (!goalUp && (leftDown || rightDown)) {
+            Goals();
+        }
+
+        if (goalUp && (!leftDown || !rightDown)) {
+            noGoal();
+        }
+
+        ctx.font='900 50px Comic Sans MS';
+        ctx.fillText("Score: " + score, w, 395);
+        ctx.fillStyle = "black";
+        ctx.font='900 23px Comic Sans MS';
+        ctx.fillText("Click here for the next penalty!", w+10, 440);
+    
+        r2.path = new Path2D();
+        r2.path.rect(w/2-100, 200, 565, 300);
+    }
 
     function rounds() {
         if (round2) {
-            ctx.drawImage(r2, w/2-100, 200, 565, 300);
-            ctx.textAlign = "center"; 
-            ctx.font='900 90px Comic Sans MS';
-
-            if (!goalUp && (leftDown || rightDown)) {
-
-                ctx.fillStyle = "blue";
-                ctx.font='900 100px Comic Sans MS';
-
-                if (En) {
-                    ctx.fillText("Goal!", w, 335);
-                    ctx.font='900 50px Comic Sans MS';
-                    ctx.fillText("Score: " + score, w, 395);
-                    ctx.fillStyle = "black";
-                    ctx.font='900 23px Comic Sans MS';
-                    ctx.fillText("Click here for the next penalty!", w+10, 440);
-                }
-
-                if (Ger) {
-                    ctx.font='600 52px Arial';
-                    ctx.fillText("Punktzahl: " + score, w, 70);
-                }
-                if (Rom) {
-                    ctx.fillText("Scor: " + score, w, 70);
-                }
-                if (Bul) {
-                    ctx.fillText("резултат: " + score, w, 70);
-                }
-                if (Grk) {
-                    ctx.fillText("Σκορ: " + score, w, 70);
-                }
-                if (Tuk) {
-                    ctx.fillText("Puan: " + score, w, 70);
-                }
-               
-            }
-            r2.path = new Path2D();
-            r2.path.rect(w/2-100, 200, 565, 300);
+            levels();
             sec = false;
             canvas.addEventListener("click", Round2);
         }
 
         if (round3) {
-            ctx.drawImage(r2, w/2-100, 200, 565, 300);
-            ctx.textAlign = "center"; 
-            ctx.font='900 90px Comic Sans MS';
-
-            if (!goalUp && (leftDown || rightDown)) {
-
-                ctx.fillStyle = "blue";
-                ctx.font='900 100px Comic Sans MS';
-
-                if (En) {
-                    ctx.fillText("Goal!", w, 335);
-                    ctx.font='900 50px Comic Sans MS';
-                    ctx.fillText("Score: " + score, w, 395);
-                    ctx.fillStyle = "black";
-                    ctx.font='900 23px Comic Sans MS';
-                    ctx.fillText("Click here for the next penalty!", w+10, 440);
-                }
-
-                if (Ger) {
-                    ctx.font='600 52px Arial';
-                    ctx.fillText("Punktzahl: " + score, w, 70);
-                }
-                if (Rom) {
-                    ctx.fillText("Scor: " + score, w, 70);
-                }
-                if (Bul) {
-                    ctx.fillText("резултат: " + score, w, 70);
-                }
-                if (Grk) {
-                    ctx.fillText("Σκορ: " + score, w, 70);
-                }
-                if (Tuk) {
-                    ctx.fillText("Puan: " + score, w, 70);
-                }
-               
-            }
-            r2.path = new Path2D();
-            r2.path.rect(w/2-100, 200, 565, 300);
+            levels();
             thd = false;
             canvas.addEventListener("click", Round3);
+        }
+
+        if (round4) {
+            levels();
+            foth = false;
+            canvas.addEventListener("click", Round4);
+        }
+
+        if (round5) {
+            levels();
+            fith = false;
+            canvas.addEventListener("click", Round5);
         }
 
         if (end) {
@@ -1554,81 +1580,38 @@ function setBall() {
         if (footballPlayer) {
             x += dx;
             y += dy;
-            setTimeout(leftD, 1400);
+            setTimeout(leftD, 1000);
         }
 
         if (!footballPlayer) {
             x -= dx;
             y += dy;
-            setTimeout(rightD, 1400); 
+            setTimeout(rightD, 1000); 
         }
     }
-
-
-    if (pinLeft && pinRight && round1) {
-        if (x >= 320 && x <= 335 && y <= 190) { 
 
             if (speechOn) {
-                cheeringAud.play();
-                
+                            
                 if (En) {
-                    stikeVceAud.play();
+                    cheeringAud.play();
                 }
                 if (Ger) {
-                    stikeVceAudGer.play();
+                    
                 }
                 if (Rom) {
-                    stikeVceAudRom.play();
+                
                 }
                 if (Bul) {
-                    stikeVceAudBul.play();
+                    
                 }
                 if (Grk) {
-                    stikeVceAudGrk.play();
+                    
                 }
                 if (Tuk) {
-                    stikeVceAudTur.play();
+                    
                 }
 
             }
-
-            pinLeft = false;
-            pinRight = false;
-            strikeTar = true;
-
-            if (effectsOn) {
-                strikeAud.play();
-            }
-
-            //score=score+10;
-        }
-    }
-
-    if (pinLeft) {
-    if (x >= 215 && x <= 300 && y < 190) {
-            pinLeft = false;
-            strikeTar = false;
-
-            if (effectsOn) {
-                //strikeAud.play();
-            }
-
-            //score=score+3;
-        }
-    }
-
-    if (pinRight) {
-    if (x >= 301 && x <= 430 && y < 190) {
-            pinRight = false;
-            strikeTar = false;
-
-            if (effectsOn) {
-                strikeAud.play();
-            }
-
-            //score=score+7;
-        }
-    }  
 
     if (y < 50) {
         Rolling = false;
@@ -1645,6 +1628,14 @@ function setBall() {
 
     if (thd) {
         round3 = true;
+    }
+
+    if (foth) {
+        round4 = true;
+    }
+
+    if (fith) {
+        round5 = true;
     }
 
     if (lastScreen) {
