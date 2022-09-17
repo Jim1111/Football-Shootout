@@ -7,6 +7,11 @@ var clickRightTrue = true;
 // center text
 var w = canvas.width / 2;
 
+var nextLevel = false;
+var scoreGiven = true;
+var randomGoal = 0;
+
+
 var goalUp = true;
 var leftDown = false;
 var rightDown = false;
@@ -23,7 +28,7 @@ var fith = false;
 var lastScreen = false;
 
 
-var score = 1;
+var score = 0;
 var Rolling = true;
 var introSp = true;
 var wellDone = true;
@@ -932,6 +937,7 @@ function SplashEnd(e) {
        if (ctx.isPointInPath(splEnd.path, e.offsetX, e.offsetY)) {
            splashSc = false;
            insSc = true;
+           randomGoal = Math.floor(Math.random() * 2) + 1;
            canvas.removeEventListener("click", SplashEnd);
         }
     }
@@ -1086,6 +1092,7 @@ function InsEnd(e) {
 
         insSc = false;
         gameSc = true;
+        
 
         canvas.removeEventListener("click", InsEnd);
      }
@@ -1172,6 +1179,7 @@ function Ins() {
     ctx.fillStyle = "black";
     
     
+    
     if (En) {
         ctx.fillText("Let's Go!", w, 520);
     }
@@ -1210,6 +1218,7 @@ function SetBall(e) {
 }
 
 function setBall() {
+    nextLevel = false;
     ctx.drawImage(setBowl, w/2-65, 225, 495, 265);
     setBowl.path = new Path2D();
     setBowl.path.rect(w/2-10, 350, 600, 400);
@@ -1313,6 +1322,7 @@ function setBall() {
             Rd();
             round2 = false;
             thd = true;
+            randomGoal = Math.floor(Math.random() * 2) + 1;
             canvas.removeEventListener("click", Round2);
          }
      } 
@@ -1322,6 +1332,7 @@ function setBall() {
             Rd();
             round3 = false;
             foth = true;
+            randomGoal = Math.floor(Math.random() * 2) + 1;
             canvas.removeEventListener("click", Round3);
          }
      } 
@@ -1331,6 +1342,7 @@ function setBall() {
             Rd();
             round4 = false;
             fith = true;
+            randomGoal = Math.floor(Math.random() * 2) + 1;
             canvas.removeEventListener("click", Round4);
          }
      } 
@@ -1340,6 +1352,7 @@ function setBall() {
             Rd();
             round5 = false;
             lastScreen = true;
+            randomGoal = Math.floor(Math.random() * 2) + 1;
             canvas.removeEventListener("click", Round5);
          }
      } 
@@ -1362,8 +1375,9 @@ function setBall() {
             lastScreen = false;
             SetBalltrue = true;
             splashSc = true;
-            score=1;
+            score=0;
             wellDone = true;
+            randomGoal = Math.floor(Math.random() * 2) + 1;
             canvas.removeEventListener("click", End);
          }
      } 
@@ -1395,11 +1409,11 @@ function setBall() {
      }
 
      function noGoal() {
-        ctx.fillStyle = "Red";
+        ctx.fillStyle = "#FFBF00";
             ctx.font='900 100px Comic Sans MS';
 
             if (En) {
-                ctx.fillText("No Goal!", w, 335);
+                ctx.fillText("Saved!", w, 335);
             }
             if (Ger) {
                 ctx.font='600 52px Arial';
@@ -1570,6 +1584,16 @@ function setBall() {
     });
 
 
+    if (randomGoal<=1 && randomGoal>=1) {
+        scoreGiven = true;
+        //alert("true");
+    }
+
+    if (randomGoal<=2 && randomGoal>=2) {
+        scoreGiven = false;
+        //alert("false");
+    }
+
 
     if (bowlRse) {
 
@@ -1577,50 +1601,49 @@ function setBall() {
             //ballAud.play();
         }
 
-        if (footballPlayer) {
+        if (footballPlayer && scoreGiven) {
             x += dx;
             y += dy;
-            setTimeout(leftD, 1000);
+            setTimeout(leftD, 500);
         }
 
-        if (!footballPlayer) {
+        if (!footballPlayer && scoreGiven) {
             x -= dx;
             y += dy;
-            setTimeout(rightD, 1000); 
+            setTimeout(rightD, 500); 
+        }
+
+        if (footballPlayer && !scoreGiven) {
+            y += dy;
+        }
+
+        if (!footballPlayer && !scoreGiven) {
+            y += dy;
         }
     }
 
-            if (speechOn) {
-                            
-                if (En) {
-                    cheeringAud.play();
-                }
-                if (Ger) {
-                    
-                }
-                if (Rom) {
-                
-                }
-                if (Bul) {
-                    
-                }
-                if (Grk) {
-                    
-                }
-                if (Tuk) {
-                    
-                }
-
-            }
-
-    if (y < 50) {
+    if (y < 200 && !scoreGiven) {
         Rolling = false;
         //ballAud.pause();
-        //ballAud.currentTime = 0;
-        round1 = false;
+        //ballAud.currentTime = 0; 
         Rolling = false;
+        y = 200;
+        nextLevel = true;
+        }
 
+
+    if (y < 50 && scoreGiven) {
+        Rolling = false;
+        //ballAud.pause();
+        //ballAud.currentTime = 0; 
+        Rolling = false;
         y = 140;
+        nextLevel = true;
+        }
+
+    round1 = false;
+    
+    if (nextLevel) {
 
     if (sec) {
         round2 = true;
