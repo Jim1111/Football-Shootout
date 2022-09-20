@@ -7,6 +7,8 @@ var clickRightTrue = true;
 // center text
 var w = canvas.width / 2;
 
+var saved = false;
+
 var nextLevel = false;
 var scoreGiven = true;
 var randomGoal = 0;
@@ -28,7 +30,7 @@ var fith = false;
 var lastScreen = false;
 
 
-var score = 0;
+var score = 1;
 var Rolling = true;
 var introSp = true;
 var wellDone = true;
@@ -47,13 +49,14 @@ var round5 = false;
 var end = false;
 
 var g1 = w-120;
-var dg1 = 0.4;
+var dg1 = 0.3;
 
 var bowlRse = false;
 var x = w;
 var y = 675;
 var dx = 1;
-var dy = -4;
+var dy = -5;
+var dyl = -1;
 
 
 
@@ -178,6 +181,9 @@ goal.src = "images/newGoal.png";
 
 const ball = new Image();
 ball.src = "images/ball.png";
+
+const keeperSaved = new Image();
+keeperSaved.src = "images/keeper-saved.png";
 
 const keeper = new Image();
 keeper.src = "images/goalkeeper.png";
@@ -1282,6 +1288,7 @@ function setBall() {
 
 
     function goalKeeper() {
+
     if (goalUp) { 
     
     if (g1>270 || g1<200) {
@@ -1292,22 +1299,30 @@ function setBall() {
 
     ctx.drawImage(keeper, g1, 20, 240, 230);
     }
+    
+    if (saved) {
+        ctx.drawImage(keeperSaved, w-100, 20, 220, 230);
+    }
+
     if (leftDown) {
-    ctx.drawImage(keeperDownL, w-270, 70, 210, 150);
+        ctx.drawImage(keeperDownL, w-270, 70, 210, 150);
     }
+
     if (rightDown) {
-    ctx.drawImage(keeperDownR, w+60, 70, 210, 150);
+        ctx.drawImage(keeperDownR, w+60, 70, 210, 150);
     }
+    
     }
 
     function Rd() {
 
         if (leftDown || rightDown) {
-            score++;
+            //score++;
         }
 
         clickLeft = true;      
         goalUp = true;
+        saved = false;
         leftDown = false;
         rightDown = false;
         x = w;
@@ -1361,6 +1376,7 @@ function setBall() {
         if (ctx.isPointInPath(r3.path, e.offsetX, e.offsetY)) {
             clickLeft = true;
             goalUp = true;
+            saved = false;
             leftDown = false;
             rightDown = false;
             x = w;
@@ -1441,7 +1457,7 @@ function setBall() {
             Goals();
         }
 
-        if (goalUp && (!leftDown || !rightDown)) {
+        if (saved && (!leftDown || !rightDown)) {
             noGoal();
         }
 
@@ -1488,13 +1504,22 @@ function setBall() {
 
             if (En) {
                 ctx.fillText("Game Over!", w+10, 300);
-                ctx.font='900 40px Comic Sans MS';
+
+                if (score >= 0 && score <= 0) {
+                    ctx.fillStyle = "black";
+                    ctx.font='900 40px Comic Sans MS';
+                    ctx.fillText("You didn't Score", w+10, 370);
+                    ctx.font='900 35px Comic Sans MS';
+                    ctx.fillText("Click Here to Play Again", w+10, 420);
+                 }
                 
                 if (score >= 1 && score <= 1) {
+                    ctx.font='900 45px Comic Sans MS';
                    ctx.fillText("You scored " + score + " Goal!", w+10, 350);
                 }
 
                 if (score >= 2 && score <=5) {
+                    ctx.font='900 45px Comic Sans MS';
                     ctx.fillText("You scored " + score + " Goals!", w+10, 350);
                 }
 
@@ -1519,6 +1544,7 @@ function setBall() {
             ctx.fillStyle = "black";
             ctx.font='900 14px Comic Sans MS';
 
+            if (score>=1) {
             if (En) {
                 ctx.font='900 30px Comic Sans MS';
                 ctx.fillText("Well Done!", w+10, 395);
@@ -1539,6 +1565,7 @@ function setBall() {
             if (Tuk) {
                 ctx.fillText("Aferin! - Tekrar Oynamak İçin Buraya Tıklayın", w+10, 545);
             }
+        }
             
             r3.path = new Path2D();
             r3.path.rect(w/2-100, 200, 565, 300);
@@ -1570,6 +1597,10 @@ function setBall() {
         rightDown = true;
     }
 
+    function Saved() {
+        goalUp = false;
+        saved = true;
+    }
 
 
     function rolling() {
@@ -1612,6 +1643,20 @@ function setBall() {
             y += dy;
             setTimeout(rightD, 500); 
         }
+
+        if (footballPlayer && !scoreGiven) {
+            x = w
+            y += dyl;
+            setTimeout(Saved, 1000);
+        }
+
+        if (!footballPlayer && !scoreGiven) {
+            x = w;
+            y += dyl;
+            setTimeout(Saved, 1000);
+        }
+
+        ///////////////////////////////////
 
         if (footballPlayer && !scoreGiven) {
             y += dy;
