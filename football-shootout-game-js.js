@@ -7,6 +7,12 @@ var clickRightTrue = true;
 // center text
 var w = canvas.width / 2;
 
+var roundsEnd = false;
+
+var hitPost = false;
+
+var firstRd = true;
+
 var saved = false;
 
 var nextLevel = false;
@@ -27,10 +33,11 @@ var sec = true;
 var thd = false;
 var foth = false;
 var fith = false;
+var six = false;
 var lastScreen = false;
 
 
-var score = 1;
+var score = 0;
 var Rolling = true;
 var introSp = true;
 var wellDone = true;
@@ -46,6 +53,7 @@ var round2 = false;
 var round3 = false;
 var round4 = false;
 var round5 = false;
+var round6 = false;
 var end = false;
 
 var g1 = w-120;
@@ -197,9 +205,11 @@ keeperDownR.src = "images/goalkeeper-downR.png";
 const setBowl = new Image();
 setBowl.src = "images/splEnd.png";
 
+const ohno = new Image();
+ohno.src = "images/ohno.png";
 
-
-
+const happy = new Image();
+happy.src = "images/happy.png";
 
 ////// music change ///////////////////
 ///////////////////////////////////////
@@ -1316,9 +1326,9 @@ function setBall() {
 
     function Rd() {
 
-        if (leftDown || rightDown) {
-            //score++;
-        }
+        clearTimeout(leftD);
+        clearTimeout(rightD);
+        clearTimeout(Saved);
 
         clickLeft = true;      
         goalUp = true;
@@ -1366,21 +1376,42 @@ function setBall() {
         if (ctx.isPointInPath(r2.path, e.offsetX, e.offsetY)) {
             Rd();
             round5 = false;
-            lastScreen = true;
+            six = true;
+            roundsEnd = true;
             randomGoal = Math.floor(Math.random() * 2) + 1;
             canvas.removeEventListener("click", Round5);
+         }
+     }
+
+     function Round6(e) {
+        if (ctx.isPointInPath(r2.path, e.offsetX, e.offsetY)) {
+            round6 = false;
+            lastScreen = true;
+            goalUp = true;
+            rightDown = false;
+            leftDown = false;
+            saved = false;
+            randomGoal = Math.floor(Math.random() * 2) + 1;
+            canvas.removeEventListener("click", Round6);
          }
      } 
 
      function End(e) {
         if (ctx.isPointInPath(r3.path, e.offsetX, e.offsetY)) {
+            clearTimeout(leftD);
+            clearTimeout(rightD);
+            clearTimeout(Saved);
+
             clickLeft = true;
             goalUp = true;
+
             saved = false;
             leftDown = false;
             rightDown = false;
+
             x = w;
             y = 675;
+
             sec = true;
             bowlRse = false;
             pinLeft = true;
@@ -1393,8 +1424,8 @@ function setBall() {
             splashSc = true;
             score=0;
             wellDone = true;
-            randomGoal = Math.floor(Math.random() * 2) + 1;
-            canvas.removeEventListener("click", End);
+            //randomGoal = Math.floor(Math.random() * 2) + 1;
+            canvas.removeEventListener("click", Round6);
          }
      } 
 
@@ -1454,6 +1485,10 @@ function setBall() {
         ctx.textAlign = "center"; 
 
         if (!goalUp && (leftDown || rightDown)) {
+            if (firstRd) {
+                score=1;
+                firstRd = false;
+            }
             Goals();
         }
 
@@ -1465,10 +1500,17 @@ function setBall() {
         ctx.fillText("Score: " + score, w, 395);
         ctx.fillStyle = "black";
         ctx.font='900 23px Comic Sans MS';
-        ctx.fillText("Click here for the next penalty!", w+10, 440);
+
+        if (!roundsEnd) {
+            ctx.fillText("Click here for the next penalty!", w+10, 440);
+        }
+
+        if (roundsEnd) {
+            ctx.fillText("Click Here for the final score!", w+10, 440);
+        }
     
         r2.path = new Path2D();
-        r2.path.rect(w/2-100, 200, 565, 300);
+        r2.path.rect(w/2-100, 100, 365, 400);
     }
 
     function rounds() {
@@ -1496,79 +1538,104 @@ function setBall() {
             canvas.addEventListener("click", Round5);
         }
 
+        if (round6) {
+            levels();   
+            six = false;
+            canvas.addEventListener("click", Round6);
+        }
+
         if (end) {
-            ctx.drawImage(r3, w/2-100, 200, 565, 300);
+            clearTimeout(leftD);
+            clearTimeout(rightD);
+            clearTimeout(Saved);
+            goalUp = true;
+            rightDown = false;
+            leftDown = false;
+            saved = false;
+            
+            ctx.drawImage(r3, w/2-100, 160, 565, 380);
             ctx.textAlign = "center"; 
-            ctx.font='900 60px Comic Sans MS';
+            ctx.font='900 70px Comic Sans MS';
             ctx.fillStyle = "blue";
 
             if (En) {
-                ctx.fillText("Game Over!", w+10, 300);
+                ctx.fillText("Game Over!", w+10, 280);
 
                 if (score >= 0 && score <= 0) {
                     ctx.fillStyle = "black";
-                    ctx.font='900 40px Comic Sans MS';
-                    ctx.fillText("You didn't Score", w+10, 370);
-                    ctx.font='900 35px Comic Sans MS';
-                    ctx.fillText("Click Here to Play Again", w+10, 420);
+                    ctx.font='900 30px Comic Sans MS';
+                    ctx.fillText("You didn't Score any Goals!", w+10, 333);
+                    ctx.drawImage(ohno, w-20, 345, 70, 70);
+                    ctx.font='900 30px Comic Sans MS';
+                    ctx.fillText("Click Here to Play Again", w+10, 440);
                  }
+
+                if (Ger) {
+                    ctx.fillText("Spiel ist aus!", w+10, 475);
+                }
+                if (Rom) {
+                    ctx.fillText("Joc încheiat!", w+10, 475);
+                }
+                if (Bul) {
+                    ctx.fillText("Играта приключи!", w+10, 475);
+                }
+                if (Grk) {
+                    ctx.fillText("Τέλος παιχνιδιού!", w+10, 475);
+                }
+                if (Tuk) {
+                    ctx.fillText("Oyun bitti!", w+10, 475);
+                }
                 
                 if (score >= 1 && score <= 1) {
                     ctx.font='900 45px Comic Sans MS';
-                   ctx.fillText("You scored " + score + " Goal!", w+10, 350);
+                    ctx.fillText("You scored " + score + " Goal!", w+10, 328);
+                    ctx.drawImage(happy, w-20, 338, 70, 70);
                 }
 
                 if (score >= 2 && score <=5) {
                     ctx.font='900 45px Comic Sans MS';
-                    ctx.fillText("You scored " + score + " Goals!", w+10, 350);
+                    ctx.fillText("You scored " + score + " Goals!", w+10, 328);
+                    ctx.drawImage(happy, w-20, 338, 70, 70);
                 }
 
             }
-
-            if (Ger) {
-                ctx.fillText("Spiel ist aus!", w+10, 475);
-            }
-            if (Rom) {
-                ctx.fillText("Joc încheiat!", w+10, 475);
-            }
-            if (Bul) {
-                ctx.fillText("Играта приключи!", w+10, 475);
-            }
-            if (Grk) {
-                ctx.fillText("Τέλος παιχνιδιού!", w+10, 475);
-            }
-            if (Tuk) {
-                ctx.fillText("Oyun bitti!", w+10, 475);
-            }
-            
+ 
             ctx.fillStyle = "black";
             ctx.font='900 14px Comic Sans MS';
 
             if (score>=1) {
-            if (En) {
-                ctx.font='900 30px Comic Sans MS';
-                ctx.fillText("Well Done!", w+10, 395);
-                ctx.fillText("Click Here to Play Again", w+10, 440);
+
+                if (En) {
+                    ctx.font='900 30px Comic Sans MS';
+                    ctx.fillText("Well Done!", w+10, 445);
+                    ctx.fillText("Click Here to Play Again", w+10, 480);
+                }
+
+                if (Ger) {
+                    ctx.fillText("Gut erledigt! - Klicken Sie hier, um erneut zu spielen", w+10, 545);
+                }
+
+                if (Rom) {
+                    ctx.fillText("Bine făcut! - Faceți clic aici pentru a juca din nou", w+10, 545);
+                }
+
+                if (Bul) {
+                    ctx.fillText("Много добре! - Щракнете тук, за да играете отново", w+10, 545);
+                }
+
+                if (Grk) {
+                    ctx.fillText("Μπράβο! - Κάντε κλικ εδώ για να παίξετε ξανά", w+10, 545);
+                }
+
+                if (Tuk) {
+                    ctx.fillText("Aferin! - Tekrar Oynamak İçin Buraya Tıklayın", w+10, 545);
+                }
+
             }
-            if (Ger) {
-                ctx.fillText("Gut erledigt! - Klicken Sie hier, um erneut zu spielen", w+10, 545);
-            }
-            if (Rom) {
-                ctx.fillText("Bine făcut! - Faceți clic aici pentru a juca din nou", w+10, 545);
-            }
-            if (Bul) {
-                ctx.fillText("Много добре! - Щракнете тук, за да играете отново", w+10, 545);
-            }
-            if (Grk) {
-                ctx.fillText("Μπράβο! - Κάντε κλικ εδώ για να παίξετε ξανά", w+10, 545);
-            }
-            if (Tuk) {
-                ctx.fillText("Aferin! - Tekrar Oynamak İçin Buraya Tıklayın", w+10, 545);
-            }
-        }
             
+
             r3.path = new Path2D();
-            r3.path.rect(w/2-100, 200, 565, 300);
+            r3.path.rect(w/2-100, 160, 565, 380);
             lastScreen = false;
        
             canvas.addEventListener("click", End);
@@ -1594,7 +1661,7 @@ function setBall() {
 
     function rightD() {
         goalUp = false;
-        rightDown = true;
+        rightDown = true;       
     }
 
     function Saved() {
@@ -1607,7 +1674,9 @@ function setBall() {
 
     window.addEventListener('contextmenu', (e) => {
         if (clickRightTrue) {
-           clickLeft = false;
+
+           clickLeft = true;
+
            SetBalltrue = false;
            bowlRse = true;
            e.preventDefault();
@@ -1635,25 +1704,25 @@ function setBall() {
         if (footballPlayer && scoreGiven) {
             x += dx;
             y += dy;
-            setTimeout(leftD, 500);
+            setTimeout(leftD, 200);
         }
 
         if (!footballPlayer && scoreGiven) {
             x -= dx;
             y += dy;
-            setTimeout(rightD, 500); 
+            setTimeout(rightD, 200); 
         }
 
         if (footballPlayer && !scoreGiven) {
             x = w
             y += dyl;
-            setTimeout(Saved, 1000);
+            setTimeout(Saved, 500);
         }
 
         if (!footballPlayer && !scoreGiven) {
             x = w;
             y += dyl;
-            setTimeout(Saved, 1000);
+            setTimeout(Saved, 500);
         }
 
         ///////////////////////////////////
@@ -1667,23 +1736,24 @@ function setBall() {
         }
     }
 
-    if (y < 200 && !scoreGiven) {
+    /*if (y < 200 && !scoreGiven && saved && !hitPost) {
         Rolling = false;
-        //ballAud.pause();
-        //ballAud.currentTime = 0; 
-        Rolling = false;
-        y = 200;
+        y = 500;
         nextLevel = true;
-        }
+        }*/
+
+        if (y < 200 && !scoreGiven) {
+            Rolling = false; 
+            y = 200;
+            nextLevel = true;
+            }
 
 
     if (y < 50 && scoreGiven) {
         Rolling = false;
-        //ballAud.pause();
-        //ballAud.currentTime = 0; 
-        Rolling = false;
         y = 140;
         nextLevel = true;
+        score=score+1;
         }
 
     round1 = false;
@@ -1704,6 +1774,10 @@ function setBall() {
 
     if (fith) {
         round5 = true;
+    }
+
+    if (six) {
+        round6 = true;
     }
 
     if (lastScreen) {
