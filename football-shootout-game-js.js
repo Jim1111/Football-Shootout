@@ -64,7 +64,7 @@ var x = w;
 var y = 675;
 var dx = 1;
 var dy = -5;
-var dyl = -1;
+var dyl = -5;
 
 
 
@@ -1391,7 +1391,7 @@ function setBall() {
             rightDown = false;
             leftDown = false;
             saved = false;
-            randomGoal = Math.floor(Math.random() * 2) + 1;
+            //randomGoal = Math.floor(Math.random() * 2) + 1;
             canvas.removeEventListener("click", Round6);
          }
      } 
@@ -1424,8 +1424,11 @@ function setBall() {
             splashSc = true;
             score=0;
             wellDone = true;
+
+            roundsEnd = false;
+            firstRd = false;
             //randomGoal = Math.floor(Math.random() * 2) + 1;
-            canvas.removeEventListener("click", Round6);
+            canvas.removeEventListener("click", End);
          }
      } 
 
@@ -1701,6 +1704,7 @@ function setBall() {
             //ballAud.play();
         }
 
+        //score dive
         if (footballPlayer && scoreGiven) {
             x += dx;
             y += dy;
@@ -1713,6 +1717,7 @@ function setBall() {
             setTimeout(rightD, 200); 
         }
 
+        // saved goalkeeper middle
         if (footballPlayer && !scoreGiven) {
             x = w
             y += dyl;
@@ -1727,13 +1732,6 @@ function setBall() {
 
         ///////////////////////////////////
 
-        if (footballPlayer && !scoreGiven) {
-            y += dy;
-        }
-
-        if (!footballPlayer && !scoreGiven) {
-            y += dy;
-        }
     }
 
     /*if (y < 200 && !scoreGiven && saved && !hitPost) {
@@ -1742,11 +1740,11 @@ function setBall() {
         nextLevel = true;
         }*/
 
-        if (y < 200 && !scoreGiven) {
-            Rolling = false; 
-            y = 200;
-            nextLevel = true;
-            }
+    if (y < 200 && !scoreGiven) {
+        Rolling = false; 
+        y = 200;
+        nextLevel = true;
+    }
 
 
     if (y < 50 && scoreGiven) {
@@ -1754,7 +1752,7 @@ function setBall() {
         y = 140;
         nextLevel = true;
         score=score+1;
-        }
+    }
 
     round1 = false;
     
