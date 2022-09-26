@@ -23,7 +23,7 @@ var hitPost = false;
 var saved = false;
 
 
-var randomGoal = 0;
+var randomGoal = 3;
 
 
 var goalUp = true;
@@ -965,7 +965,7 @@ function SplashEnd(e) {
        if (ctx.isPointInPath(splEnd.path, e.offsetX, e.offsetY)) {
            splashSc = false;
            insSc = true;
-           randomGoal = Math.floor(Math.random() * 3) + 1;
+           //randomGoal = Math.floor(Math.random() * 1) + 1;
            canvas.removeEventListener("click", SplashEnd);
         }
     }
@@ -1126,6 +1126,13 @@ function InsEnd(e) {
      }
  } 
 
+
+
+
+
+
+
+
 function Ins() {
     ctx.drawImage(splash_img, 0, 0, 800, 800);
     ctx.textAlign = "center";
@@ -1252,6 +1259,14 @@ function setBall() {
     setBowl.path.rect(w/2-10, 350, 600, 400);
     ctx.font='900 22px Comic Sans MS';
 
+    scoreGiven = false;
+    hitPost = false;
+    saved = false;
+
+    console.log("clickRightTrue is " + clickRightTrue);
+    console.log("SetBalltrue is " + SetBalltrue);
+    console.log("bowlRse is " + bowlRse);
+
     if (En) {
         ctx.fillStyle = "black";
         ctx.fillText("Move the position of the", w+10, 300);
@@ -1358,8 +1373,10 @@ function setBall() {
 
         x = w;
         y = 675;
+
         bowlRse = false;
         SetBalltrue = true;
+
         clickRightTrue = false;
     
     }
@@ -1369,8 +1386,8 @@ function setBall() {
             Rd();
             round2 = false;
             thd = true;
-            randomGoal = Math.floor(Math.random() * 3) + 1;
-            //console.log(randomGoal);
+            randomGoal = Math.floor(Math.random() * 1) + 1;
+            console.log(randomGoal);
             canvas.removeEventListener("click", Round2);
          }
      } 
@@ -1380,7 +1397,7 @@ function setBall() {
             Rd();
             round3 = false;
             foth = true;
-            randomGoal = Math.floor(Math.random() * 3) + 1;
+            randomGoal = Math.floor(Math.random() * 2) + 1;
             canvas.removeEventListener("click", Round3);
          }
      } 
@@ -1390,7 +1407,7 @@ function setBall() {
             Rd();
             round4 = false;
             fith = true;
-            randomGoal = Math.floor(Math.random() * 3) + 1;
+            randomGoal = Math.floor(Math.random() * 2) + 1;
             canvas.removeEventListener("click", Round4);
          }
      } 
@@ -1399,39 +1416,38 @@ function setBall() {
         if (ctx.isPointInPath(r2.path, e.offsetX, e.offsetY)) {
             Rd();
             round5 = false;
-            six = true;
-            roundsEnd = true;
-            randomGoal = Math.floor(Math.random() * 3) + 1;
+            lastScreen=true;
+            //six = true;
+            roundsEnd = true; // true if the game is ending
+            randomGoal = Math.floor(Math.random() * 1) + 1;
             canvas.removeEventListener("click", Round5);
          }
      }
+
 
      function Round6(e) {
         if (ctx.isPointInPath(r2.path, e.offsetX, e.offsetY)) {
             round6 = false;
             lastScreen = true;
 
-            goalUp = true;
+            /*goalUp = true;
 
             rightDown = false;
             leftDown = false;
             saved = false;
-            hitPost = false;
-            //randomGoal = Math.floor(Math.random() * 2) + 1;
+            hitPost = false;*/
+
+            //randomGoal = Math.floor(Math.random() * 1) + 1;
             canvas.removeEventListener("click", Round6);
          }
      } 
 
      function End(e) {
         if (ctx.isPointInPath(r3.path, e.offsetX, e.offsetY)) {
-            clearTimeout(leftD);
-            clearTimeout(rightD);
-            clearTimeout(Saved);
-            clearTimeout(HitPost);
 
-            clickLeft = true;
+            clickLeft = false;
+
             goalUp = true;
-
             saved = false;
             hitPost = false;
             leftDown = false;
@@ -1452,10 +1468,11 @@ function setBall() {
             splashSc = true;
             score=0;
             wellDone = true;
+            randomGoal = 3;
 
             roundsEnd = false;
             firstRd = false;
-            //randomGoal = Math.floor(Math.random() * 2) + 1;
+            //randomGoal = Math.floor(Math.random() * 1) + 1;
             canvas.removeEventListener("click", End);
          }
      } 
@@ -1724,19 +1741,24 @@ function setBall() {
         hitPost = false;
         leftDown = false;
         saved = true;
-
     }
 
     function HitPost() {
         goalUp = false;
-        saved = false;
         rightDown = false;
         leftDown = false;
+        saved = false;
         hitPost = true;
     }
 
 
     function rolling() {
+
+
+
+
+
+
 
     window.addEventListener('contextmenu', (e) => {
         if (clickRightTrue) {
@@ -1766,6 +1788,9 @@ function setBall() {
     if (randomGoal<=3 && randomGoal>=3) {
         hitPost = true;
         console.log("randomGoal is " + randomGoal);
+        //console.log("hitPost is " + hitPost);
+        //console.log("scoregiv is " + scoreGiven);
+        //console.log("saved is " + saved);
     }
 
 
@@ -1780,70 +1805,71 @@ function setBall() {
         }
 
         //score dive
-        if (footballPlayer && scoreGiven && !hitPost) {
+        if (footballPlayer && scoreGiven && !hitPost && !saved) {
             x += dx;
             y += dy;
-            setTimeout(leftD, 200);
+            setTimeout(leftD, 5);
         }
 
-        if (!footballPlayer && scoreGiven && !hitPost) {
+        if (!footballPlayer && scoreGiven && !hitPost && !saved) {
             x -= dx;
             y += dy;
-            setTimeout(rightD, 200); 
+            setTimeout(rightD, 5); 
         }
 
         ////////////////////////////////////////////////////
 
         // saved goalkeeper middle
-        if (footballPlayer && !scoreGiven && !hitPost) {
+        if (footballPlayer && !scoreGiven && !hitPost && saved) {
             x = w
             y += dyl;
-            setTimeout(Saved, 200);
+            setTimeout(Saved, 5);
         }
 
-        if (!footballPlayer && !scoreGiven && !hitPost) {
+        if (!footballPlayer && !scoreGiven && !hitPost && saved) {
             x = w;
             y += dyl;
-            setTimeout(Saved, 200);
+            setTimeout(Saved, 5);
         }
 
         ///////////////////////////////////
 
         // hit post goalkeeper middle
-        if (footballPlayer && !scoreGiven && hitPost) {
+        if (footballPlayer && hitPost) {
             x += dxh;
             y += dyh;
-            setTimeout(HitPost, 200);
+  
+            setTimeout(HitPost, 5);
         }
 
-        if (!footballPlayer && !scoreGiven && hitPost) {
+        if (!footballPlayer && hitPost) {
             x -= dxh;
             y += dyh;
-            setTimeout(HitPost, 200);
+
+            setTimeout(HitPost, 5);
         }
 
     }
 
     // saved
-    if (y < 200 && !scoreGiven && !hitPost) {
+    if (y < 200 && !scoreGiven && !hitPost && saved) {
         Rolling = false; 
         y = 200;
         nextLevel = true;
     }
 
     // hit post
-    if (y < -24 && hitPost) {
-        x=-50;
+    if (y < -50 && !scoreGiven && hitPost && !saved) {
         Rolling = false; 
         nextLevel = true;
     }
 
     // score
-    if (y < 50 && scoreGiven && !hitPost) {
+    if (y < 50 && scoreGiven && !hitPost && !saved) {
         Rolling = false;
         y = 140;
-        nextLevel = true;
         score=score+1;
+        nextLevel = true;
     }
 
     round1 = false;
