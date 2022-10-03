@@ -25,6 +25,9 @@ var saved = false;
 
 var randomGoal = 3;
 
+var blueFP = true;
+var redFP = false;
+
 
 var goalUp = true;
 var leftDown = false;
@@ -123,6 +126,12 @@ BoxEff1.src = "images/menuAssets/Box.png";
 const BoxEff2 = new Image();
 BoxEff2.src = "images/menuAssets/Box.png";
 
+const BoxTeams1 = new Image();
+BoxTeams1.src = "images/menuAssets/Box.png";
+
+const BoxTeams2 = new Image();
+BoxTeams2.src = "images/menuAssets/Box.png";
+
 // Trans cicles
 
 const BoxEn = new Image();
@@ -187,11 +196,19 @@ splEnd.src = "images/splEnd.png";
 const insEnd = new Image();
 insEnd.src = "images/splEnd.png";
 
-const playerL = new Image();
-playerL.src = "images/playerL.png";
 
-const playerR = new Image();
-playerR.src = "images/playerR.png";
+const blueL = new Image();
+blueL.src = "images/blueL.png";
+
+const blueR = new Image();
+blueR.src = "images/blueR.png";
+
+const redL = new Image();
+redL.src = "images/redL.png";
+
+const redR = new Image();
+redR.src = "images/redR.png";
+
 
 const goal = new Image();
 goal.src = "images/newGoal.png";
@@ -380,6 +397,33 @@ function effectsF(e) {
         if (ctx.isPointInPath(BoxEff2.path, e.offsetX, e.offsetY)) {
             effectsOn=false;
             canvas.removeEventListener("click", effectsF);
+        }
+    } // setMenu
+}
+
+/////End of Mouse effects Change///////////////////
+/////////////////////////////////////////////////
+
+
+////// Teams change ///////////////////
+///////////////////////////////////////
+
+function teamsB(e) {
+    if (setMenu) {
+        if (ctx.isPointInPath(BoxTeams1.path, e.offsetX, e.offsetY)) {
+            redFP=false;
+            blueFP=true;
+            canvas.removeEventListener("click", teamsB);
+        }
+    } // setMenu
+}
+
+function teamsR(e) {
+    if (setMenu) {
+        if (ctx.isPointInPath(BoxTeams2.path, e.offsetX, e.offsetY)) {
+            redFP=true;
+            blueFP=false;
+            canvas.removeEventListener("click", teamsR);
         }
     } // setMenu
 }
@@ -945,6 +989,208 @@ function showMenu() {
 
     // End of Effects
 
+
+
+
+// Effects
+  
+    ctx.drawImage(menuHead, 410, 320, 250, 50);
+
+    ctx.fillStyle = "white";
+
+    ctx.font = "900 25px Arial"; 
+
+    if (En) {
+        ctx.fillText("Effects", 480, 353);
+    }
+
+    if (Ger) {
+        ctx.fillText("Auswirkungen", 440, 353);
+    }
+
+    if (Rom) {
+        ctx.fillText("Efecte", 480, 353);
+    }
+
+    if (Bul) {
+        ctx.fillText("Ефекти", 480, 353);
+    }
+
+    if (Grk) {
+        ctx.fillText("Υπάρχοντα", 460, 353);
+    }
+    if (Tuk) {
+        ctx.fillText("Etkileri", 480, 353);
+    }
+
+
+    ctx.fillStyle = "black";
+    ctx.font = "700 27px Arial";
+
+    ctx.drawImage(BoxEff1, 410, 378, 50, 50);
+    BoxEff1.path = new Path2D();
+    BoxEff1.path.rect(410, 378, 50, 50);
+
+    if (effectsOn) {  
+        ctx.drawImage(rTick1, 416, 379, 50, 40);
+    }
+
+    if (En) {
+        ctx.fillText("On", 470, 415);
+    }
+    if (Ger) {
+        ctx.fillText("An", 470, 415);
+    }
+    if (Rom) {
+        ctx.fillText("Pe", 470, 415);
+    }
+    if (Bul) {
+        ctx.fillText("Ha", 470, 415);
+    }
+    if (Grk) {
+        ctx.fillText("Επί", 470, 415);
+    }
+    if (Tuk) {
+        ctx.fillText("Açık", 470, 415);
+    }
+
+    ctx.drawImage(BoxEff2, 410, 433, 50, 50);
+    BoxEff2.path = new Path2D();
+    BoxEff2.path.rect(410, 433, 50, 50);
+
+    
+
+    if (!effectsOn) {
+        ctx.drawImage(rTick1, 417, 433, 50, 40);
+    }
+    
+    if (En) {
+        ctx.fillText("Off", 470, 470);
+    }
+    if (Ger) {
+        ctx.fillText("Aus", 470, 470);
+    }
+    if (Rom) {
+        ctx.fillText("Oprit", 470, 470);
+    }
+    if (Bul) {
+        ctx.fillText("Изключено", 470, 470);
+    }
+    if (Grk) {
+        ctx.fillText("Μακριά από", 470, 470);
+    }
+    if (Tuk) {
+        ctx.fillText("Kapalı", 470, 470);
+    }
+
+    canvas.addEventListener("click", effectsT);
+    canvas.addEventListener("click", effectsF);
+
+    // End of Effects
+
+
+
+
+
+
+    // Player Selection
+  
+    ctx.drawImage(menuHead, 410, 500, 250, 50);
+
+    ctx.fillStyle = "white";
+
+    ctx.font = "900 25px Arial"; 
+
+    if (En) {
+        ctx.fillText("Teams", 490, 533);
+    }
+
+    if (Ger) {
+        ctx.fillText("Mannschaften", 440, 533);
+    }
+
+    if (Rom) {
+        ctx.fillText("Echipe", 490, 533);
+    }
+
+    if (Bul) {
+        ctx.fillText("Екипи", 490, 533);
+    }
+
+    if (Grk) {
+        ctx.fillText("Της ομάδας", 460, 533);
+    }
+    if (Tuk) {
+        ctx.fillText("Takımlar", 480, 533);
+    }
+
+
+    ctx.fillStyle = "black";
+    ctx.font = "700 27px Arial";
+
+    ctx.drawImage(BoxTeams1, 410, 560, 50, 50);
+    BoxTeams1.path = new Path2D();
+    BoxTeams1.path.rect(410, 560, 50, 50);
+
+    if (blueFP) {  
+        ctx.drawImage(rTick1, 416, 561, 50, 40);
+    }
+
+    if (En) {
+        ctx.fillText("Blue", 470, 592);
+    }
+    if (Ger) {
+        ctx.fillText("", 470, 592);
+    }
+    if (Rom) {
+        ctx.fillText("", 470, 592);
+    }
+    if (Bul) {
+        ctx.fillText("", 470, 592);
+    }
+    if (Grk) {
+        ctx.fillText("", 470, 592);
+    }
+    if (Tuk) {
+        ctx.fillText("", 470, 592);
+    }
+
+    ctx.drawImage(BoxTeams2, 410, 615, 50, 50);
+    BoxTeams2.path = new Path2D();
+    BoxTeams2.path.rect(410, 615, 50, 50);
+
+    
+
+    if (redFP) {
+        ctx.drawImage(rTick1, 416, 617, 50, 40);
+    }
+    
+    if (En) {
+        ctx.fillText("Red", 470, 650);
+    }
+    if (Ger) {
+        ctx.fillText("", 470, 650);
+    }
+    if (Rom) {
+        ctx.fillText("", 470, 650);
+    }
+    if (Bul) {
+        ctx.fillText("", 470, 650);
+    }
+    if (Grk) {
+        ctx.fillText("", 470, 450);
+    }
+    if (Tuk) {
+        ctx.fillText("", 470, 450);
+    }
+
+    canvas.addEventListener("click", teamsB);
+    canvas.addEventListener("click", teamsR);
+
+    // End of Player Selection
+
+
+
     
 
 
@@ -1270,9 +1516,9 @@ function setBall() {
     Sgoal.pause();
     Sgoal.currentTime = 0;
 
-    console.log("clickRightTrue is " + clickRightTrue);
-    console.log("SetBalltrue is " + SetBalltrue);
-    console.log("bowlRse is " + bowlRse);
+    //console.log("clickRightTrue is " + clickRightTrue);
+    //console.log("SetBalltrue is " + SetBalltrue);
+    //console.log("bowlRse is " + bowlRse);
 
     if (En) {
         ctx.fillStyle = "black";
@@ -1394,7 +1640,7 @@ function setBall() {
             round2 = false;
             thd = true;
             randomGoal = Math.floor(Math.random() * 1) + 1;
-            console.log(randomGoal);
+            //console.log(randomGoal);
             canvas.removeEventListener("click", Round2);
          }
      } 
@@ -1801,12 +2047,12 @@ function setBall() {
 
     if (randomGoal<=1 && randomGoal>=1) {
         scoreGiven = true;
-        console.log("randomGoal is " + randomGoal);
+        //console.log("randomGoal is " + randomGoal);
     }
 
     if (randomGoal<=2 && randomGoal>=2) {
         saved = true;
-        console.log("randomGoal is " + randomGoal);
+        //console.log("randomGoal is " + randomGoal);
     }
 
     if (randomGoal<=3 && randomGoal>=3) {
@@ -1927,17 +2173,39 @@ function setBall() {
 
 
 function playerLck(e) {
-    if (ctx.isPointInPath(playerL.path, e.offsetX, e.offsetY)) {
+
+if (blueFP) {
+    if (ctx.isPointInPath(blueL.path, e.offsetX, e.offsetY)) {  
         footballPlayer = false;
         canvas.removeEventListener("click", playerLck);
      }
+}
+
+if (redFP) {
+     if (ctx.isPointInPath(redL.path, e.offsetX, e.offsetY)) {  
+        footballPlayer = false;
+        canvas.removeEventListener("click", playerLck);
+     }
+}
+
  }
 
- function playerRck(e) {
-    if (ctx.isPointInPath(playerR.path, e.offsetX, e.offsetY)) {
+function playerRck(e) {
+
+if (blueFP) {
+    if (ctx.isPointInPath(blueR.path, e.offsetX, e.offsetY)) {
         footballPlayer = true;
         canvas.removeEventListener("click", playerRck);
-     }
+    }
+}
+
+if (redFP) {
+    if (ctx.isPointInPath(redR.path, e.offsetX, e.offsetY)) {
+        footballPlayer = true;
+        canvas.removeEventListener("click", playerRck);
+    }
+}
+
  }
 
 function Game() {
@@ -1948,20 +2216,45 @@ function Game() {
 
     ctx.drawImage(ball, x-28, y, 60, 60);
 
+
+
+
+
     
 
     if (footballPlayer) {
-    ctx.drawImage(playerL, w-170, 480, 170, 260);
-    playerL.path = new Path2D();
-    playerL.path.rect(w-170, 480, 170, 260);
-    canvas.addEventListener("click", playerLck);
+
+        if (blueFP) {
+            ctx.drawImage(blueL, w-170, 480, 170, 260);
+            blueL.path = new Path2D();
+            blueL.path.rect(w-170, 480, 170, 260);
+            canvas.addEventListener("click", playerLck);
+        }
+
+        if (redFP) {
+            ctx.drawImage(redL, w-170, 480, 170, 260);
+            redL.path = new Path2D();
+            redL.path.rect(w-170, 480, 170, 260);
+            canvas.addEventListener("click", playerLck);
+        }
+    
     }
 
     if (!footballPlayer) {
-    ctx.drawImage(playerR, w+2, 480, 170, 260);
-    playerR.path = new Path2D();
-    playerR.path.rect(w+2, 480, 170, 260);
-    canvas.addEventListener("click", playerRck);
+
+        if (blueFP) {
+            ctx.drawImage(blueR, w+2, 480, 170, 260);
+            blueR.path = new Path2D();
+            blueR.path.rect(w+2, 480, 170, 260);
+            canvas.addEventListener("click", playerRck);
+        }
+
+        if (redFP) {
+            ctx.drawImage(redR, w+2, 480, 170, 260);
+            redR.path = new Path2D();
+            redR.path.rect(w+2, 480, 170, 260);
+            canvas.addEventListener("click", playerRck);
+        } 
     }
 
     goalKeeper();
