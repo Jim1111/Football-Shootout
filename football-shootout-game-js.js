@@ -168,7 +168,9 @@ var letsGoAudTur = new Audio("audio/letsGoAudTur.mp3");
 
 var cheeringAud = new Audio("audio/cheering.mp3");
 
-/*var goal = new Audio("audio/goal.mp3");*/
+var mGoal = new Audio("audio/missed-goal.mp3");
+
+var Sgoal = new Audio("audio/goal.mp3");
 
 const splash_img = new Image();
 splash_img.src = "images/splash_img.png";
@@ -1263,6 +1265,11 @@ function setBall() {
     hitPost = false;
     saved = false;
 
+    mGoal.pause();
+    mGoal.currentTime = 0;
+    Sgoal.pause();
+    Sgoal.currentTime = 0;
+
     console.log("clickRightTrue is " + clickRightTrue);
     console.log("SetBalltrue is " + SetBalltrue);
     console.log("bowlRse is " + bowlRse);
@@ -1725,6 +1732,10 @@ function setBall() {
         hitPost = false;
         leftDown = true;
         saved = false;
+        if (effectsOn) {
+            Sgoal.play();
+            Sgoal.volume = 0.9;
+        }
     }
 
     function rightD() {
@@ -1732,7 +1743,11 @@ function setBall() {
         rightDown = true;
         hitPost = false;
         leftDown = false;
-        saved = false;  
+        saved = false;
+        if (effectsOn) {
+            Sgoal.play();
+            Sgoal.volume = 0.9;
+        }
     }
 
     function Saved() {
@@ -1741,7 +1756,12 @@ function setBall() {
         hitPost = false;
         leftDown = false;
         saved = true;
+        if (effectsOn) {
+            mGoal.play();
+            mGoal.volume = 0.7;
+        }
     }
+    
 
     function HitPost() {
         goalUp = false;
@@ -1749,6 +1769,10 @@ function setBall() {
         leftDown = false;
         saved = false;
         hitPost = true;
+        if (effectsOn) {
+            mGoal.play();
+            mGoal.volume = 0.7;
+        }
     }
 
 
@@ -1800,9 +1824,7 @@ function setBall() {
 
     if (bowlRse) {
 
-        if (effectsOn) {
-            //ballAud.play();
-        }
+        
 
         //score dive
         if (footballPlayer && scoreGiven && !hitPost && !saved) {
