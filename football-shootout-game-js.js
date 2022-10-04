@@ -485,30 +485,30 @@ function showMenu() {
 
       ctx.drawImage(menuHead, 62, 130, 250, 50);
 
-      ctx.font = "900 25px Arial"; 
+      ctx.font = "900 20px Arial"; 
     
     if (En) {
-        ctx.fillText("Crowd Noise", 100, 164);
+        ctx.fillText("Crowd Noise", 110, 164);
     }
 
     if (Ger) {
-        ctx.fillText("Musik", 149, 164);
+        ctx.fillText("Lärm der Menge", 100, 164);
     }
 
     if (Rom) {
-        ctx.fillText("Muzică", 149, 164);
+        ctx.fillText("Zgomot de mulțime", 85, 164);
     }
 
     if (Bul) {
-        ctx.fillText("Музика", 149, 164);
+        ctx.fillText("Шум от тълпата", 95, 164);
     }
 
     if (Grk) {
-        ctx.fillText("ΜΟΥΣΙΚΗ", 119, 164);
+        ctx.fillText("Θόρυβος πλήθους", 85, 164);
     }
 
     if (Tuk) {
-        ctx.fillText("Müzik", 149, 164);
+        ctx.fillText("Kalabalık Gürültüsü", 75, 164);
     }
     
     ctx.font = "700 27px Arial";
@@ -1137,22 +1137,22 @@ function showMenu() {
     }
 
     if (En) {
-        ctx.fillText("Blue", 470, 592);
+        ctx.fillText("Blue Team", 470, 592);
     }
     if (Ger) {
-        ctx.fillText("", 470, 592);
+        ctx.fillText("Blaues Team", 470, 592);
     }
     if (Rom) {
-        ctx.fillText("", 470, 592);
+        ctx.fillText("Echipa albastră", 470, 592);
     }
     if (Bul) {
-        ctx.fillText("", 470, 592);
+        ctx.fillText("Син отбор", 470, 592);
     }
     if (Grk) {
-        ctx.fillText("", 470, 592);
+        ctx.fillText("Μπλε ομάδα", 470, 592);
     }
     if (Tuk) {
-        ctx.fillText("", 470, 592);
+        ctx.fillText("Mavi takım", 470, 592);
     }
 
     ctx.drawImage(BoxTeams2, 410, 615, 50, 50);
@@ -1166,22 +1166,22 @@ function showMenu() {
     }
     
     if (En) {
-        ctx.fillText("Red", 470, 650);
+        ctx.fillText("Red Team", 470, 650);
     }
     if (Ger) {
-        ctx.fillText("", 470, 650);
+        ctx.fillText("rotes Team", 470, 650);
     }
     if (Rom) {
-        ctx.fillText("", 470, 650);
+        ctx.fillText("Echipa Rosie", 470, 650);
     }
     if (Bul) {
-        ctx.fillText("", 470, 650);
+        ctx.fillText("Червен отбор", 470, 650);
     }
     if (Grk) {
-        ctx.fillText("", 470, 450);
+        ctx.fillText("Κόκκινη ομάδα", 470, 650);
     }
     if (Tuk) {
-        ctx.fillText("", 470, 450);
+        ctx.fillText("kırmızı takım", 470, 650);
     }
 
     canvas.addEventListener("click", teamsB);
@@ -1258,7 +1258,7 @@ function Splash() {
     }
 
 
-    ctx.font='900 70px Arial';
+    ctx.font='900 55px Arial';
     ctx.fillStyle = "white";
 
     
@@ -1268,25 +1268,23 @@ function Splash() {
         ctx.fillText("Football Shootout", w, 245);
     }
     if (Ger) {
-        ctx.fillText("Bowling", w, 245);
+        ctx.fillText("Fußball-Schießerei", w, 245);
     }
     if (Rom) {
-        ctx.fillText("Bowling", w, 245);
+        ctx.fillText("Shootout de fotbal", w, 245);
     }
     if (Bul) {
-        ctx.font='500 140px Comic Sans MS';
-        ctx.fillText("Боулинг", w, 205);
+        ctx.fillText("Футболни дузпиг", w, 205);
     }
     if (Grk) {
-        ctx.font='500 120px Comic Sans MS';
-        ctx.fillText("Μπόουλινγκ", w, 235);
+        ctx.fillText("Ποδοσφαιρική πέναλτι", w, 235);
     }
     if (Tuk) {
-        ctx.fillText("Bowling", w, 245);
+        ctx.fillText("futbol atışları", w, 245);
     }
 
 
-    ctx.font='900 70px Comic Sans MS';
+    ctx.font='900 45px Comic Sans MS';
     ctx.fillStyle = "white";
 
     
@@ -1387,31 +1385,29 @@ function Ins() {
     ctx.fillStyle = "white";
     ctx.fillRect(50, 80, 616, 550);  
     ctx.fillStyle = "black";
-    ctx.font='900 70px Comic Sans MS';
+    ctx.font='900 50px Comic Sans MS';
 
     if (En) {
         ctx.fillText("Football Shootout", w, 180);
     }
     if (Ger) {
-        ctx.fillText("Bowling Spiel", w, 180);
+        ctx.fillText("Fußball-Schießerei", w, 180);
     }
     if (Rom) {
-        ctx.fillText("Bowling Joc", w, 180);
+        ctx.fillText("Shootout de fotbal", w, 180);
     }
     if (Bul) {
-        ctx.font='900 70px Comic Sans MS';
-        ctx.fillText("Боулинг Игра", w, 180);
+        ctx.fillText("Футболни дузпи", w, 180);
     }
     if (Grk) {
         ctx.font='900 50px Comic Sans MS';
-        ctx.fillText("Μπόουλινγκ Παιχνίδι", w, 180);
+        ctx.fillText("Ποδοσφαιρική πέναλτι", w, 180);
     }
     if (Tuk) {
-        ctx.font='900 70px Comic Sans MS';
-        ctx.fillText("Bowling oyun", w, 180);
+        ctx.fillText("futbol atışları", w, 180);
     }
 
-    ctx.font='600 30px Comic Sans MS';
+    ctx.font='600 25px Comic Sans MS';
 
     
 
@@ -1421,31 +1417,30 @@ function Ins() {
         ctx.fillText("See how many you can score!", w, 360);
     }
     if (Ger) {
-        ctx.font='700 25px Comic Sans MS';
-        ctx.fillText("Das Spiel beginnt mit 10 Kegeln", w, 260);
-        ctx.fillText("Du kannst den Ball zweimal werfen", w, 310);
-        ctx.fillText("Sehen Sie, wie viele Sie niederschlagen können!", w, 360);
+        ctx.fillText("Es geht ins Elfmeterschießen!", w, 260);
+        ctx.fillText("Sie haben 5 Chancen, ein Tor zu erzielen", w, 310);
+        ctx.fillText("Sehen Sie, wie viele Sie punkten können!", w, 360);
     }
     if (Rom) {
-        ctx.fillText("Jocul începe cu 10 skittles", w, 260);
-        ctx.fillText("Puteți arunca mingea de două ori", w, 310);
-        ctx.fillText("Vezi câte poți doborî!", w, 360);
+        ctx.fillText("S-a trecut la penalty-uri!", w, 260);
+        ctx.fillText("Ai 5 ocazii sa marchezi un gol", w, 310);
+        ctx.fillText("Vezi câte poți înscrie!", w, 360);
     }
     if (Bul) {
-        ctx.fillText("Играта започва с 10 кегли", w, 260);
-        ctx.fillText("Можете да хвърлите топката два пъти", w, 310);
-        ctx.fillText("Вижте колко можете да съборите!", w, 360);
+        ctx.fillText("Стигна се до дузпи!", w, 260);
+        ctx.fillText("Имате 5 шанса да отбележите гол", w, 310);
+        ctx.fillText("Вижте колко можете да вкарате!", w, 360);
     }
     if (Grk) {
         ctx.font='700 25px Comic Sans MS';
-        ctx.fillText("Το παιχνίδι ξεκινά με 10 κορύνες", w, 260);
-        ctx.fillText("Μπορείτε να πετάξετε την μπάλα δύο φορές", w, 310);
-        ctx.fillText("Δείτε πόσους μπορείτε να γκρεμίσετε!", w, 360);
+        ctx.fillText("", w, 260);
+        ctx.fillText("", w, 310);
+        ctx.fillText("", w, 360);
     }
     if (Tuk) {
-        ctx.fillText("Oyun 10 kuka ile başlar", w, 260);
-        ctx.fillText("Topu iki kez atabilirsin", w, 310);
-        ctx.fillText("Bakalım kaç tanesini devirebileceksin!", w, 360);
+        ctx.fillText("", w, 260);
+        ctx.fillText("", w, 310);
+        ctx.fillText("", w, 360);
     }
 
 
