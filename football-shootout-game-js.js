@@ -1433,14 +1433,14 @@ function Ins() {
     }
     if (Grk) {
         ctx.font='700 25px Comic Sans MS';
-        ctx.fillText("", w, 260);
-        ctx.fillText("", w, 310);
-        ctx.fillText("", w, 360);
+        ctx.fillText("Πάει στα πέναλτι!", w, 260);
+        ctx.fillText("Έχετε 5 ευκαιρίες να πετύχετε ένα γκολ", w, 310);
+        ctx.fillText("Δείτε πόσους μπορείτε να σκοράρετε!", w, 360);
     }
     if (Tuk) {
-        ctx.fillText("", w, 260);
-        ctx.fillText("", w, 310);
-        ctx.fillText("", w, 360);
+        ctx.fillText("Penaltılara gitti!", w, 260);
+        ctx.fillText("Gol atmak için 5 şansınız var", w, 310);
+        ctx.fillText("Kaç tane puan alabileceğinizi görün!", w, 360);
     }
 
 
@@ -1511,10 +1511,6 @@ function setBall() {
     Sgoal.pause();
     Sgoal.currentTime = 0;
 
-    //console.log("clickRightTrue is " + clickRightTrue);
-    //console.log("SetBalltrue is " + SetBalltrue);
-    //console.log("bowlRse is " + bowlRse);
-
     if (En) {
         ctx.fillStyle = "black";
         ctx.fillText("Move the position of the", w+10, 300);
@@ -1525,46 +1521,56 @@ function setBall() {
         ctx.fillStyle = "black";
     }
     if (Ger) {
-        ctx.fillText("Verschieben Sie die Position der", w+10, 470);
-        ctx.fillText("Bowlingkugel durch Linksklick", w+10, 500);
-        ctx.fillText("auf diesem Etikett", w, 530);
+        ctx.fillText("Verschieben Sie die Position der", w+10, 300);
+        ctx.fillText("Fußballspieler durch Linksklick", w+10, 330);
+        ctx.fillText("auf dem Spieler", w, 360);
 
-        ctx.fillText("Dann Rechtsklick auf", w+5, 575);
-        ctx.fillText("um den Ball loszulassen!", w+5, 605);
+        ctx.fillStyle = "blue";
+        ctx.fillText("Dann Rechtsklick", w+5, 410);
+        ctx.fillText("Hier zum Schießen!", w+5, 440);
+        ctx.fillStyle = "black";
     }
     if (Rom) {
-        ctx.fillText("Mutați poziția", w+10, 470);
-        ctx.fillText("minge de bowling prin clic stânga", w+10, 500);
-        ctx.fillText("pe această etichetă", w, 530);
+        ctx.fillText("Mutați poziția", w+10, 300);
+        ctx.fillText("fotbalist prin clic stânga", w+10, 330);
+        ctx.fillText("pe player", w, 360);
 
-        ctx.fillText("Apoi faceți clic dreapta pentru", w+5, 575);
-        ctx.fillText("sa eliberez mingea!", w+5, 605);
+        ctx.fillStyle = "blue";
+        ctx.fillText("Apoi faceți clic dreapta", w+5, 410);
+        ctx.fillText("Aici să împușcăm!", w+5, 440);
+        ctx.fillStyle = "black";
     }
     if (Bul) {
         ctx.font='900 21px Comic Sans MS';  
-        ctx.fillText("Преместете позицията на", w+10, 470);
-        ctx.fillText("топка за боулинг с ляв клик", w+10, 500);
-        ctx.fillText("на този етикет", w, 530);
+        ctx.fillText("Преместете позицията на", w+10, 300);
+        ctx.fillText("футболист с ляв клик", w+10, 330);
+        ctx.fillText("на плейъра", w, 360);
 
-        ctx.fillText("След това щракнете с десния бутон за", w+5, 575);
-        ctx.fillText("да пусне топката!", w+5, 605);
+        ctx.fillStyle = "blue";
+        ctx.fillText("След това щракнете с десния бутон", w+5, 410);
+        ctx.fillText("Тук за стрелба!", w+5, 440);
+        ctx.fillStyle = "black";
     }
     if (Grk) {
         ctx.font='900 24px Comic Sans MS';  
-        ctx.fillText("Μετακινήστε τη θέση του", w+10, 470);
-        ctx.fillText("μπάλα μπόουλινγκ με αριστερό κλικ", w+10, 500);
-        ctx.fillText("σε αυτή την ετικέτα", w, 530);
+        ctx.fillText("Μετακινήστε τη θέση του", w+10, 300);
+        ctx.fillText("ποδοσφαιριστής με αριστερό κλικ", w+10, 330);
+        ctx.fillText("στον παίκτη", w, 360);
 
-        ctx.fillText("Στη συνέχεια, κάνετε δεξί κλικ στο", w+5, 575);
-        ctx.fillText("να αφήσει την μπάλα!", w+5, 605);
+        ctx.fillStyle = "blue";
+        ctx.fillText("Στη συνέχεια κάντε δεξί κλικ", w+5, 410);
+        ctx.fillText("Εδώ για να πυροβολήσετε!", w+5, 440);
+        ctx.fillStyle = "black";
     }
     if (Tuk) {
-        ctx.fillText("konumunu hareket ettirin", w+10, 470);
-        ctx.fillText("Sol Tıklama ile bowling topu", w+10, 500);
-        ctx.fillText("bu etikette", w, 530);
+        ctx.fillText("konumunu hareket ettirin", w+10, 300);
+        ctx.fillText("Sol Tıklama ile futbolcu", w+10, 330);
+        ctx.fillText("oyuncuda", w, 360);
 
-        ctx.fillText("Ardından Sağ Tıklayarak", w+5, 575);
-        ctx.fillText("topu serbest bırakmak için!", w+5, 605);
+        ctx.fillStyle = "blue";
+        ctx.fillText("Sonra Sağ Tıkla", w+5, 410);
+        ctx.fillText("İşte Vurmak için!", w+5, 440);
+        ctx.fillStyle = "black";
     }
     
     canvas.addEventListener("click", SetBall);
@@ -1734,55 +1740,103 @@ function setBall() {
                 ctx.fillText("Goal!", w, 335);
             }
             if (Ger) {
-                ctx.font='600 52px Arial';
-                ctx.fillText("Punktzahl: " + score, w, 70);
+                ctx.fillText("das Goal!", w, 335);
             }
             if (Rom) {
-                ctx.fillText("Scor: " + score, w, 70);
+                ctx.fillText("Poartă!", w, 335);
             }
             if (Bul) {
-                ctx.fillText("резултат: " + score, w, 70);
+                ctx.fillText("Гол!", w, 335);
             }
             if (Grk) {
-                ctx.fillText("Σκορ: " + score, w, 70);
+                ctx.fillText("Τέρμα!", w, 335);
             }
             if (Tuk) {
-                ctx.fillText("Puan: " + score, w, 70);
+                ctx.fillText("Hedef!", w, 335);
             }            
      }
 
      function noGoal() {
         ctx.fillStyle = "#FFBF00";
-            ctx.font='900 55px Comic Sans MS';
-
-            if (En) {
-                if (saved) {
-                    ctx.font='900 65px Comic Sans MS';
-                    ctx.fillText("Saved", w, 300);
-                    ctx.font='900 55px Comic Sans MS';
-                    ctx.fillText("No goal!", w, 350);
-                }
-                if (hitPost) {
-                    ctx.fillText("Hit the Goalpost", w, 300);
-                    ctx.fillText("No goal!", w, 350);
-                }
+        ctx.font='900 55px Comic Sans MS';
+      
+        if (saved) {
+           if (En) {
+               ctx.font='900 65px Comic Sans MS';
+               ctx.fillText("Saved", w, 300);
+               ctx.font='900 55px Comic Sans MS';
+               ctx.fillText("No goal!", w, 350);
             }
             if (Ger) {
-                ctx.font='600 52px Arial';
-                ctx.fillText("Punktzahl: " + score, w, 70);
-                }
+                ctx.font='900 65px Comic Sans MS';
+                ctx.fillText("Gerettet", w, 300);
+                ctx.font='900 55px Comic Sans MS';
+                ctx.fillText("Kein Tor!", w, 350);
+            }
             if (Rom) {
-                ctx.fillText("Scor: " + score, w, 70);
-                }
+                ctx.font='900 65px Comic Sans MS';
+                ctx.fillText("Salvat", w, 300);
+                ctx.font='900 55px Comic Sans MS';
+                ctx.fillText("Nici un gol!", w, 350);
+            }
             if (Bul) {
-                ctx.fillText("резултат: " + score, w, 70);
-                }
+                ctx.font='900 65px Comic Sans MS';
+                ctx.fillText("Запаметено", w, 300);
+                ctx.font='900 55px Comic Sans MS';
+                ctx.fillText("Без гол!", w, 350);
+            }
             if (Grk) {
-                ctx.fillText("Σκορ: " + score, w, 70);
-                }
+                ctx.font='900 65px Comic Sans MS';
+                ctx.fillText("Αποθηκεύτηκε", w, 300);
+                ctx.font='900 55px Comic Sans MS';
+                ctx.fillText("Κανένας στόχος!", w, 350);
+            }
             if (Tuk) {
-                ctx.fillText("Puan: " + score, w, 70);
-                }            
+                ctx.font='900 65px Comic Sans MS';
+                ctx.fillText("kaydedildi", w, 300);
+                ctx.font='900 55px Comic Sans MS';
+                ctx.fillText("Gol yok!", w, 350);
+            } 
+        }
+
+        if (hitPost) {
+            if (En) {
+                ctx.fillText("Hit the Goalpost", w, 300);
+                ctx.fillText("No goal!", w, 350);
+            }
+            if (Ger) {
+                ctx.font='900 40px Comic Sans MS';
+                ctx.fillText("Triff den Torpfosten", w, 300);
+                ctx.font='900 35px Comic Sans MS';
+                ctx.fillText("Kein Tor!", w, 350);
+            }
+            if (Rom) {
+                ctx.font='900 40px Comic Sans MS';
+                ctx.fillText("Loviți stâlpul porții", w, 300);
+                ctx.font='900 35px Comic Sans MS';
+                ctx.fillText("Nici un gol!", w, 350);
+            }
+            if (Bul) {
+                ctx.font='900 40px Comic Sans MS';
+                ctx.fillText("Удари вратата", w, 300);
+                ctx.font='900 35px Comic Sans MS';
+                ctx.fillText("Без гол!", w, 350);
+            }
+            if (Grk) {
+                ctx.font='900 40px Comic Sans MS';
+                ctx.fillText("Χτυπήστε το γκολπόστ", w, 300);
+                ctx.font='900 35px Comic Sans MS';
+                ctx.fillText("Κανένας στόχος!", w, 350);
+            }
+            if (Tuk) {
+                ctx.font='900 40px Comic Sans MS';
+                ctx.fillText("Kale direğine vur", w, 300);
+                ctx.font='900 35px Comic Sans MS';
+                ctx.fillText("Gol yok!", w, 350);
+            } 
+        }
+
+                      
      }
 
     function levels() {
@@ -1806,16 +1860,73 @@ function setBall() {
         }
 
         ctx.font='900 40px Comic Sans MS';
-        ctx.fillText("Score: " + score, w, 395);
+
+        
+        if (En) {
+            ctx.fillText("Score: " + score, w, 395);
+        }
+        if (Ger) {
+            ctx.fillText("Punktzahl: " + score, w, 395);
+        }
+        if (Rom) {
+            ctx.fillText("Scor: " + score, w, 395);
+        }
+        if (Bul) {
+            ctx.fillText("резултат: " + score, w, 395);
+        }
+        if (Grk) {
+            ctx.fillText("Σκορ: " + score, w, 395);
+        }
+        if (Tuk) {
+            ctx.fillText("Puan: " + score, w, 395);
+        }
+
+
         ctx.fillStyle = "black";
         ctx.font='900 23px Comic Sans MS';
 
         if (!roundsEnd) {
-            ctx.fillText("Click here for the next penalty!", w+10, 440);
+            
+            if (En) {
+                ctx.fillText("Click here for the next penalty!", w+10, 440);
+            }
+            if (Ger) {
+                ctx.fillText("Klicken Sie hier für die nächste Strafe!", w+10, 440);
+            }
+            if (Rom) {
+                ctx.fillText("Click aici pentru următoarea penalizare!", w+10, 440);
+            }
+            if (Bul) {
+                ctx.fillText("Щракнете тук за следващата дузпа!", w+10, 440);
+            }
+            if (Grk) {
+                ctx.fillText("Κάντε κλικ εδώ για το επόμενο πέναλτι!", w+10, 440);
+            }
+            if (Tuk) {
+                ctx.fillText("Bir sonraki ceza için buraya tıklayın!", w+10, 440);
+            }
         }
 
         if (roundsEnd) {
-            ctx.fillText("Click Here for the final score!", w+10, 440);
+            
+            if (En) {
+                ctx.fillText("Click Here for the final score!", w+10, 440);
+            }
+            if (Ger) {
+                ctx.fillText("Klicken Sie hier für das Endergebnis!", w+10, 440);
+            }
+            if (Rom) {
+                ctx.fillText("Click aici pentru scorul final!", w+10, 440);
+            }
+            if (Bul) {
+                ctx.fillText("Щракнете тук за крайния резултат!", w+10, 440);
+            }
+            if (Grk) {
+                ctx.fillText("Κάντε κλικ εδώ για την τελική βαθμολογία!", w+10, 440);
+            }
+            if (Tuk) {
+                ctx.fillText("Nihai puan için buraya tıklayın!", w+10, 440);
+            }
         }
     
         r2.path = new Path2D();
@@ -1873,31 +1984,55 @@ function setBall() {
 
             if (En) {
                 ctx.fillText("Game Over!", w+10, 280);
+            }
 
-                if (score >= 0 && score <= 0) {
-                    ctx.fillStyle = "black";
-                    ctx.font='900 30px Comic Sans MS';
+            if (Ger) {
+                ctx.fillText("Spiel ist aus!", w+10, 280);
+            }
+            if (Rom) {
+                ctx.fillText("Joc încheiat!", w+10, 280);
+            }
+            if (Bul) {
+                ctx.font='900 50px Comic Sans MS';
+                ctx.fillText("Играта приключи!", w+10, 280);
+            }
+            if (Grk) {
+                ctx.font='900 55px Comic Sans MS';
+                ctx.fillText("Τέλος παιχνιδιού!", w+10, 280);
+            }
+            if (Tuk) {
+                ctx.fillText("Oyun bitti!", w+10, 280);
+            }
+                
+
+            if (score >= 0 && score <= 0) {
+                ctx.fillStyle = "black";
+                ctx.font='900 30px Comic Sans MS';
+                    
+                if (En) {
                     ctx.fillText("You didn't Score any Goals!", w+10, 333);
                     ctx.drawImage(ohno, w-20, 345, 70, 70);
                     ctx.font='900 30px Comic Sans MS';
                     ctx.fillText("Click Here to Play Again", w+10, 440);
-                 }
-
+                }
                 if (Ger) {
-                    ctx.fillText("Spiel ist aus!", w+10, 475);
+                    
                 }
                 if (Rom) {
-                    ctx.fillText("Joc încheiat!", w+10, 475);
+                    
                 }
                 if (Bul) {
-                    ctx.fillText("Играта приключи!", w+10, 475);
+                    
                 }
                 if (Grk) {
-                    ctx.fillText("Τέλος παιχνιδιού!", w+10, 475);
+                    
                 }
                 if (Tuk) {
-                    ctx.fillText("Oyun bitti!", w+10, 475);
+                    
                 }
+
+            }
+
                 
                 if (score >= 1 && score <= 1) {
                     ctx.font='900 45px Comic Sans MS';
@@ -1906,42 +2041,65 @@ function setBall() {
                 }
 
                 if (score >= 2 && score <=5) {
-                    ctx.font='900 45px Comic Sans MS';
-                    ctx.fillText("You scored " + score + " Goals!", w+10, 328);
-                    ctx.drawImage(happy, w-20, 338, 70, 70);
+
+                    ctx.font='900 35px Comic Sans MS';
+                    
+                    if (En) {
+                        ctx.fillText("You scored " + score + " Goals!", w+10, 328);
+                    }
+                    if (Ger) {
+                        ctx.fillText("Du hast gepunktet " + score + " Goals!", w+10, 328);
+                    }
+                    if (Rom) {
+                        ctx.fillText("Ai marcat " + score + " Goals!", w+10, 328);
+                    }
+                    if (Bul) {
+                        ctx.fillText("Ти отбеляза гол " + score + " Goals!", w+10, 328);
+                    }
+                    if (Grk) {
+                        ctx.fillText("Σκόραρες " + score + " Goals!", w+10, 328);
+                    }
+                    if (Tuk) {
+                        ctx.fillText("gol attın " + score + " Goals!", w+10, 328);
+                    }
                 }
 
-            }
+            ctx.drawImage(happy, w-20, 338, 70, 70);
+    
  
             ctx.fillStyle = "black";
-            ctx.font='900 14px Comic Sans MS';
+            ctx.font='900 22px Comic Sans MS';
 
             if (score>=1) {
 
                 if (En) {
-                    ctx.font='900 30px Comic Sans MS';
                     ctx.fillText("Well Done!", w+10, 445);
                     ctx.fillText("Click Here to Play Again", w+10, 480);
                 }
 
                 if (Ger) {
-                    ctx.fillText("Gut erledigt! - Klicken Sie hier, um erneut zu spielen", w+10, 545);
+                    ctx.fillText("Gut erledigt!", w+10, 445);
+                    ctx.fillText("Klicken Sie hier, um erneut zu spielen", w+10, 480);
                 }
 
                 if (Rom) {
-                    ctx.fillText("Bine făcut! - Faceți clic aici pentru a juca din nou", w+10, 545);
+                    ctx.fillText("Bine făcut!", w+10, 445);
+                    ctx.fillText("Faceți clic aici pentru a juca din nou", w+10, 480);
                 }
 
                 if (Bul) {
-                    ctx.fillText("Много добре! - Щракнете тук, за да играете отново", w+10, 545);
+                    ctx.fillText("Много добре!", w+10, 445);
+                    ctx.fillText("Щракнете тук, за да играете отново", w+10, 480);
                 }
 
                 if (Grk) {
-                    ctx.fillText("Μπράβο! - Κάντε κλικ εδώ για να παίξετε ξανά", w+10, 545);
+                    ctx.fillText("Μπράβο!", w+10, 445);
+                    ctx.fillText("Κάντε κλικ εδώ για να παίξετε ξανά", w+10, 480);
                 }
 
                 if (Tuk) {
-                    ctx.fillText("Aferin! - Tekrar Oynamak İçin Buraya Tıklayın", w+10, 545);
+                    ctx.fillText("Aferin!", w+10, 445);
+                    ctx.fillText("Tekrar Oynamak İçin Buraya Tıklayın", w+10, 480);
                 }
 
             }
