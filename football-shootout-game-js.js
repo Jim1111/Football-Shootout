@@ -4,16 +4,53 @@ const ctx = canvas.getContext('2d');
 
 var clickRightTrue = true;
 
+settingsKeyIns = false;
+
+var KeyboardMenu = false;
+var KeyMenu1 = false;
+var KeyMenu2 = false;
+var KeyMenu3 = false;
+var KeyMenu4 = false;
+var KeyMenu5 = false;
+var KeyMenu6 = false;
+var KeyMenu7 = false;
+var KeyMenu8 = false;
+var KeyMenu9 = false;
+var KeyMenu10 = false;
+var KeyMenu11 = false;
+var KeyMenu12 = false;
+var KeyMenu13 = false;
+
+var MSw1 = true;                        //
+var MSw2 = false;                       //
+var MSw3 = false;                       //
+var MSw4 = false;                       //
+var MSw5 = false;                       //
+var MSw6 = false;                       //                                        
+var MSw7 = false;                       // 
+var MSw8 = false;                       //
+var MSw9 = false;  
+var MSw10 = false; 
+var MSw11 = false; 
+var MSw12 = false; 
+var MSw13 = false;
+
 // center text
 var w = canvas.width / 2;
 
 var roundsEnd = false;
 
+const keys = []; // keyboard operations
 
+window.addEventListener("keydown", function(e){
+    keys[e.keyCode] = true;
+});
+
+window.addEventListener("keyup", function(e){
+    delete keys[e.keyCode];
+});
 
 var firstRd = true;
-
-
 
 var nextLevel = false;
 
@@ -241,6 +278,15 @@ ohno.src = "images/ohno.png";
 
 const happy = new Image();
 happy.src = "images/happy.png";
+
+// Keyboard Instructions
+function endInsKey() {
+    if (keys[32]) {
+        settingsKeyIns = false;
+        removeEventListener("keydown", endInsKey);
+    }
+}
+
 
 ////// music change ///////////////////
 ///////////////////////////////////////
@@ -477,9 +523,48 @@ function showMenu() {
         ctx.fillText("Ayarlar", w, 100);
       }
 
-      
+      ////////////////////////////////////////////////////////// 29/12/22
+      if (settingsKeyIns) {
+        ctx.globalAlpha = 1.0;
+        ctx.fillStyle = "green";
+        ctx.fillRect(90, 140, 535, 550);
+        ctx.textAlign = "center"; 
+
+        ctx.fillStyle = "black";
+        ctx.font = "900 50px Arial"; 
+        ctx.fillText("Instructions", w, 200);
+        ctx.font = "900 30px Arial"; 
+        ctx.fillStyle = "white";
+        ctx.fillText("Press the Spacebar to tab", w, 280);
+        ctx.fillText("between the options", w, 320);
+        ctx.fillText("Then press the", w, 400);
+        ctx.fillText("enter key to select", w, 440);
+
+        ctx.fillText("To play with a Switch -", w, 510);
+        ctx.fillText("You need two Switches to play", w, 550);
+
+        ctx.fillStyle = "black";
+        ctx.fillText("Press the spacebar", w, 620);
+        ctx.fillText("to continue", w, 660);
+
+        addEventListener("keydown", endInsKey);
+    }
+    /////////////////////////////////////////////////////////////////////
+
+    if (!settingsKeyIns) {
 
       ctx.textAlign = "left";
+
+       ///////////////////////////////////////////////
+       if (KeyboardMenu) {
+        if (KeyMenu1) {
+        ctx.globalAlpha = 0.3;
+        ctx.fillStyle = "Blue";
+        ctx.fillRect(60, 190, 257, 50);
+        ctx.globalAlpha = 1.0;
+        }
+      }
+        ///////////////////////////////////////////////
 
       ctx.fillStyle = "white";
 
@@ -1203,7 +1288,7 @@ function showMenu() {
 
     canvas.addEventListener("click", endMenu);
 
-  
+    } //settingsKeyIns = false
   } // setMenu = true
 } // end of showMenu
 
@@ -1218,12 +1303,32 @@ function SplashEnd(e) {
         }
     }
 
+    function SplashEndKey(e) {
+        if (keys[32]) {
+            splashSc = false;
+            insSc = true;
+            removeEventListener("click", SplashEndKey);
+        }
+     }
+
 function settingsOpen(e) {
     if (ctx.isPointInPath(settings.path, e.offsetX, e.offsetY)) {
         setMenu=true;
         canvas.removeEventListener("click", settingsOpen);
         }
     }
+
+    function settingsOpenKey(e) {
+        if (keys[13]) {
+            KeyboardMenu = true;
+            settingsKeyIns = true;
+            KeyMenu1 = true;
+            setMenu = true;
+            removeEventListener("keydown", settingsOpenKey);
+            }
+        }
+
+        
 
 function Splash() {
     ctx.drawImage(splash_img, 0, 0, 800, 800);
@@ -1234,12 +1339,16 @@ function Splash() {
     
 
     ctx.textAlign = "center";
-    ctx.font='400 17px Arial';
+    ctx.font='900 13px Arial';
     ctx.fillStyle = "white";
 
     
     if (En) {
-        ctx.fillText("Settings", 640, 85);
+        ctx.fillText("Settings", 640, 86);
+        ctx.font='400 13px Arial';
+        ctx.fillText("Click Here", 640, 102);
+        ctx.fillText("Or press the", 640, 117);
+        ctx.fillText("Enter Key", 640, 133);
     }
     if (Ger) {
         ctx.fillText("Einstellungen", 640, 85);
@@ -1337,7 +1446,9 @@ function Splash() {
     splEnd.path.rect(w/2-40, 465, 450, 200);
 
     canvas.addEventListener("click", settingsOpen);
+    addEventListener("keydown", settingsOpenKey);
     canvas.addEventListener("click", SplashEnd);
+    addEventListener("keydown", SplashEndKey);
 }
 
 function InsEnd(e) {
