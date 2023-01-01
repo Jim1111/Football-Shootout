@@ -20,6 +20,8 @@ var KeyMenu10 = false;
 var KeyMenu11 = false;
 var KeyMenu12 = false;
 var KeyMenu13 = false;
+var KeyMenu14 = false;
+var KeyMenu15 = false;
 
 var MSw1 = true;                        //
 var MSw2 = false;                       //
@@ -34,6 +36,8 @@ var MSw10 = false;
 var MSw11 = false; 
 var MSw12 = false; 
 var MSw13 = false;
+var MSw14 = false; 
+var MSw15 = false;
 
 // center text
 var w = canvas.width / 2;
@@ -473,19 +477,45 @@ function switchKeysM13(e) {
     if ((keys[32]) && KeyMenu13 && MSw13) {
 
         KeyMenu13 = false;
-        KeyMenu1 = true;
+        KeyMenu14 = true;
        
         MSw13 = false;
-        MSw1 = true;
+        MSw14 = true;
 
         removeEventListener("keydown", switchKeysM13, false);
     }
     }
 }
 
+function switchKeysM14(e) {
+    if (KeyboardMenu) {
+    if ((keys[32]) && KeyMenu14 && MSw14) {
 
+        KeyMenu14 = false;
+        KeyMenu15 = true;
+       
+        MSw14 = false;
+        MSw15 = true;
 
+        removeEventListener("keydown", switchKeysM14, false);
+    }
+    }
+}
 
+function switchKeysM15(e) {
+    if (KeyboardMenu) {
+    if ((keys[32]) && KeyMenu15 && MSw15) {
+
+        KeyMenu15 = false;
+        KeyMenu1 = true;
+       
+        MSw15 = false;
+        MSw1 = true;
+
+        removeEventListener("keydown", switchKeysM15, false);
+    }
+    }
+}
 
 
 
@@ -1410,6 +1440,18 @@ if (KeyboardMenu) {
   
     ctx.drawImage(menuHead, 410, 320, 250, 50);
 
+       ///////////////////////////////////////////////
+if (KeyboardMenu) {
+    if (KeyMenu13) {
+    ctx.globalAlpha = 0.3;
+    ctx.fillStyle = "Blue";
+    ctx.fillRect(410, 560, 257, 50);
+    ctx.globalAlpha = 1.0;
+    ctx.fillStyle = "black";
+    }
+    }
+    ///////////////////////////////////////////////
+
     ctx.fillStyle = "white";
 
     ctx.font = "900 25px Arial"; 
@@ -1444,6 +1486,18 @@ if (KeyboardMenu) {
     ctx.drawImage(BoxEff1, 410, 378, 50, 50);
     BoxEff1.path = new Path2D();
     BoxEff1.path.rect(410, 378, 50, 50);
+
+           ///////////////////////////////////////////////
+if (KeyboardMenu) {
+    if (KeyMenu14) {
+    ctx.globalAlpha = 0.3;
+    ctx.fillStyle = "Blue";
+    ctx.fillRect(410, 615, 257, 50);
+    ctx.globalAlpha = 1.0;
+    ctx.fillStyle = "black";
+    }
+    }
+    ///////////////////////////////////////////////
 
     if (effectsOn) {  
         ctx.drawImage(rTick1, 416, 379, 50, 40);
@@ -1608,7 +1662,19 @@ if (KeyboardMenu) {
     
 
 
-    ctx.textAlign = "center"; 
+    ctx.textAlign = "center";
+
+               ///////////////////////////////////////////////
+if (KeyboardMenu) {
+    if (KeyMenu15) {
+    ctx.globalAlpha = 0.3;
+    ctx.fillStyle = "Blue";
+    ctx.fillRect(w-30, 675, 50, 50);
+    ctx.globalAlpha = 1.0;
+    ctx.fillStyle = "black";
+    }
+    }
+    ///////////////////////////////////////////////
 
     ctx.drawImage(cross, w-30, 675, 50, 50);
 
@@ -1674,6 +1740,15 @@ if (KeyboardMenu) {
     
     if (MSw13) {
         addEventListener("keydown", switchKeysM13);
+    }
+
+    if (MSw14) {
+        addEventListener("keydown", switchKeysM14);
+    }
+    
+    // End of Menu //
+    if (MSw15) {
+        addEventListener("keydown", switchKeysM15);
     }
     
     if (setMenu) {
@@ -1749,6 +1824,7 @@ if (KeyboardMenu) {
             Tuk=true
         }
     
+        // Effects
         if (keys[13] && KeyMenu11 && MSw11) {
             effectsOn = true;
         }
@@ -1757,7 +1833,20 @@ if (KeyboardMenu) {
             effectsOn = false;
         }
     
+        // Teams
         if (keys[13] && KeyMenu13 && MSw13) {
+            blueFP = true;
+            redFP = false;
+        }
+
+        if (keys[13] && KeyMenu14 && MSw14) {
+            blueFP = false;
+            redFP = true;
+        }
+
+
+        // End of Menu
+        if (keys[13] && KeyMenu15 && MSw15) {
             setMenu = false;
         }
     
