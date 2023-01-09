@@ -2066,7 +2066,7 @@ function InsEnd(e) {
 
 
 
- function InsEndKey(e) {
+ function InsEndKey() {
  
     if (keys[32]) {
         if (speechOn) {         
@@ -2102,6 +2102,7 @@ function InsEnd(e) {
 
 
 function Ins() {
+    setMenu=false;
     ctx.drawImage(splash_img, 0, 0, 800, 800);
     ctx.textAlign = "center";
     ctx.fillStyle = "white";
@@ -2220,6 +2221,14 @@ function SetBall(e) {
     }
 }
 
+function SetBallKey() {
+    setMenu=false;
+    if (keys[13]) {
+        Rolling = true;
+        clickRightTrue = true;
+    }
+}
+
 function setBall() {
     nextLevel = false;
     ctx.drawImage(setBowl, w/2-165, 225, 695, 265);
@@ -2299,6 +2308,7 @@ function setBall() {
     }
     
     canvas.addEventListener("click", SetBall);
+    addEventListener("keydown", SetBallKey);
 }
 
 
@@ -2373,6 +2383,7 @@ function setBall() {
 
          ///////////////////////////////////////
          function Round2Key() {
+            setMenu=false;
             if (keys[32]) {    
                 Rd();
                 round2 = false;
@@ -2395,7 +2406,8 @@ function setBall() {
 
       ///////////////////////////////////////
       function Round3Key() {
-        if (keys[32]) {    
+        if (keys[32]) { 
+            setMenu=false; 
             Rd();
             round3 = false;
             foth = true;
@@ -2415,6 +2427,18 @@ function setBall() {
          }
      } 
 
+     ///////////////////////////////////////
+     function Round4Key() {
+        if (keys[32]) {    
+            Rd();
+            round4 = false;
+            fith = true;
+            randomGoal = Math.floor(Math.random() * 1) + 1;
+            removeEventListener("keydown", Round4Key);
+     }
+    }
+    //////////////////////////////////////////
+
      function Round5(e) {
         if (ctx.isPointInPath(r2.path, e.offsetX, e.offsetY)) {
             Rd();
@@ -2426,6 +2450,19 @@ function setBall() {
             canvas.removeEventListener("click", Round5);
          }
      }
+
+     ///////////////////////////////////////
+     function Round5Key() {
+        if (keys[32]) {    
+            Rd();
+            round5 = false;
+            lastScreen = true;
+            roundsEnd = true; // true if the game is ending
+            randomGoal = Math.floor(Math.random() * 1) + 1;
+            removeEventListener("keydown", Round5Key);
+     }
+    }
+    //////////////////////////////////////////
 
 
      function Round6(e) {
@@ -2444,6 +2481,16 @@ function setBall() {
             canvas.removeEventListener("click", Round6);
          }
      } 
+
+     ///////////////////////////////////////
+     function Round6Key() {
+        if (keys[32]) {    
+            round6 = false;
+            lastScreen = true;
+            removeEventListener("keydown", Round6Key);
+     }
+    }
+    //////////////////////////////////////////
 
      function End(e) {
         if (ctx.isPointInPath(r3.path, e.offsetX, e.offsetY)) {
@@ -2477,6 +2524,42 @@ function setBall() {
             firstRd = false;
             //randomGoal = Math.floor(Math.random() * 1) + 1;
             canvas.removeEventListener("click", End);
+         }
+     } 
+
+
+     function EndKey() {
+        if (keys[32]) {
+
+            clickLeft = false;
+
+            goalUp = true;
+            saved = false;
+            hitPost = false;
+            leftDown = false;
+            rightDown = false;
+
+            x = w;
+            y = 675;
+
+            sec = true;
+            bowlRse = false;
+            pinLeft = true;
+            pinRight = true;
+            gameSc = false;
+            round1 = true;
+            end = false;
+            lastScreen = false;
+            SetBalltrue = true;
+            splashSc = true;
+            score=0;
+            wellDone = true;
+            randomGoal = 3;
+
+            roundsEnd = false;
+            firstRd = false;
+            //randomGoal = Math.floor(Math.random() * 1) + 1;
+            removeEventListener("click", EndKey);
          }
      } 
 
@@ -2589,7 +2672,7 @@ function setBall() {
      }
 
     function levels() {
-        ctx.drawImage(r2, w/2-100, 200, 565, 300);
+        ctx.drawImage(r2, w/2-190, 200, 735, 300);
         ctx.textAlign = "center"; 
 
         if (!goalUp && (leftDown || rightDown)) {
@@ -2632,27 +2715,27 @@ function setBall() {
 
 
         ctx.fillStyle = "black";
-        ctx.font='900 23px Comic Sans MS';
+        ctx.font='900 21px Comic Sans MS';
 
         if (!roundsEnd) {
             
             if (En) {
-                ctx.fillText("Click here for the next penalty!", w+10, 440);
+                ctx.fillText("Click here or Press the Spacebar for the next penalty!", w, 440);
             }
             if (Ger) {
-                ctx.fillText("Klicken Sie hier für die nächste Strafe!", w+10, 440);
+                ctx.fillText("Klicken Sie hier oder drücken Sie die Leertaste für die nächste Strafe!", w, 440);//
             }
             if (Rom) {
-                ctx.fillText("Click aici pentru următoarea penalizare!", w+10, 440);
+                ctx.fillText("Faceți clic aici sau apăsați pe bara de spațiu pentru următoarea penalizare!", w, 440);//
             }
             if (Bul) {
-                ctx.fillText("Щракнете тук за следващата дузпа!", w+10, 440);
+                ctx.fillText("Щракнете тук или натиснете интервала за следващата дузпа!", w, 440);//
             }
             if (Grk) {
-                ctx.fillText("Κάντε κλικ εδώ για το επόμενο πέναλτι!", w+10, 440);
+                ctx.fillText("Κάντε κλικ εδώ ή πατήστε το πλήκτρο διαστήματος για την επόμενη ποινή!", w, 440);//
             }
             if (Tuk) {
-                ctx.fillText("Bir sonraki ceza için buraya tıklayın!", w+10, 440);
+                ctx.fillText("Bir sonraki ceza için buraya tıklayın veya Ara Çubuğuna basın!", w, 440);//
             }
         }
 
@@ -2701,21 +2784,21 @@ function setBall() {
             levels();
             foth = false;
             canvas.addEventListener("click", Round4);
-            //addEventListener("keydown", Round4Key);
+            addEventListener("keydown", Round4Key);
         }
 
         if (round5) {
             levels();
             fith = false;
             canvas.addEventListener("click", Round5);
-            //addEventListener("keydown", Round5Key);
+            addEventListener("keydown", Round5Key);
         }
 
         if (round6) {
             levels();   
             six = false;
             canvas.addEventListener("click", Round6);
-            //addEventListener("keydown", Round6Key);
+            addEventListener("keydown", Round6Key);
         }
 
         if (end) {
@@ -2767,7 +2850,7 @@ function setBall() {
                     ctx.fillText("You didn't Score any Goals!", w+10, 333);
                     ctx.drawImage(ohno, w-20, 345, 70, 70);
                     ctx.font='900 30px Comic Sans MS';
-                    ctx.fillText("Click Here to Play Again", w+10, 440);
+                    ctx.fillText("Click Here or Press the Spacebar to Play Again", w+10, 440);
                 }
                 if (Ger) {
                     
@@ -2828,7 +2911,7 @@ function setBall() {
 
                 if (En) {
                     ctx.fillText("Well Done!", w+10, 445);
-                    ctx.fillText("Click Here to Play Again", w+10, 480);
+                    ctx.fillText("Click Here or Press the Spacebar to Play Again", w+10, 480);
                 }
 
                 if (Ger) {
@@ -2864,7 +2947,7 @@ function setBall() {
             lastScreen = false;
        
             canvas.addEventListener("click", End);
-            //addEventListener("keydown", EndKey);
+            addEventListener("keydown", EndKey);
 
         }
 
@@ -2936,10 +3019,12 @@ function setBall() {
 /////////////////////////////////////////
 
 // Keyboard controls
-if (keys[13]) {     
-    clickLeft = false;
+if (keys[13]) {  
+    if (clickRightTrue) {
+    clickLeft = true;
     SetBalltrue = false;
     bowlRse = true;
+    }
  }
 
 //////////////////////////////////////////////////
