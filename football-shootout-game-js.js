@@ -1752,24 +1752,24 @@ if (KeyboardMenu) {
     }
     
     if (setMenu) {
-        if (keys[13] && KeyMenu1 && MSw1) {
+        if (keys[13] && KeyMenu1 && MSw1 && !gameSc) {
             musicOn=false;
         }
     
-        if (keys[13] && KeyMenu2 && MSw2) {
+        if (keys[13] && KeyMenu2 && MSw2 && !gameSc) {
             musicOn=false;
         }
     
         
-        if (keys[13] && KeyMenu3 && MSw3) {
+        if (keys[13] && KeyMenu3 && MSw3 && !gameSc) {
             speechOn = true;
         }
     
-        if (keys[13] && KeyMenu4 && MSw4) {
+        if (keys[13] && KeyMenu4 && MSw4 && !gameSc) {
             speechOn = false;
         }
     
-        if (keys[13] && KeyMenu5 && MSw5) {
+        if (keys[13] && KeyMenu5 && MSw5 && !gameSc) {
             En=true;
             Ger=false;
             Rom=false;
@@ -1778,7 +1778,7 @@ if (KeyboardMenu) {
             Tuk=false;
         }
     
-        if (keys[13] && KeyMenu6 && MSw6) {
+        if (keys[13] && KeyMenu6 && MSw6 && !gameSc) {
             En=false;
             Ger=true;
             Rom=false;
@@ -1787,7 +1787,7 @@ if (KeyboardMenu) {
             Tuk=false;
         }
     
-        if (keys[13] && KeyMenu7 && MSw7) {
+        if (keys[13] && KeyMenu7 && MSw7 && !gameSc) {
             En=false;
             Ger=false;
             Rom=true;
@@ -1797,7 +1797,7 @@ if (KeyboardMenu) {
         }
     
     
-        if (keys[13] && KeyMenu8 && MSw8) {
+        if (keys[13] && KeyMenu8 && MSw8 && !gameSc) {
             En=false
             Ger=false;
             Rom=false;
@@ -1806,7 +1806,7 @@ if (KeyboardMenu) {
             Tuk=false;
         }
     
-        if (keys[13] && KeyMenu9 && MSw9) {
+        if (keys[13] && KeyMenu9 && MSw9 && !gameSc) {
             En=false;
             Ger=false;
             Rom=false;
@@ -1815,7 +1815,7 @@ if (KeyboardMenu) {
             Tuk=false;
         }
     
-        if (keys[13] && KeyMenu10 && MSw10) {
+        if (keys[13] && KeyMenu10 && MSw10 && !gameSc) {
             En=false;
             Ger=false;
             Rom=false;
@@ -1825,28 +1825,28 @@ if (KeyboardMenu) {
         }
     
         // Effects
-        if (keys[13] && KeyMenu11 && MSw11) {
+        if (keys[13] && KeyMenu11 && MSw11 && !gameSc) {
             effectsOn = true;
         }
     
-        if (keys[13] && KeyMenu12 && MSw12) {
+        if (keys[13] && KeyMenu12 && MSw12 && !gameSc) {
             effectsOn = false;
         }
     
         // Teams
-        if (keys[13] && KeyMenu13 && MSw13) {
+        if (keys[13] && KeyMenu13 && MSw13 && !gameSc) {
             blueFP = true;
             redFP = false;
         }
 
-        if (keys[13] && KeyMenu14 && MSw14) {
+        if (keys[13] && KeyMenu14 && MSw14 && !gameSc) {
             blueFP = false;
             redFP = true;
         }
 
 
         // End of Menu
-        if (keys[13] && KeyMenu15 && MSw15) {
+        if (keys[13] && KeyMenu15 && MSw15 && !gameSc) {
             setMenu = false;
         }
     
@@ -1991,24 +1991,36 @@ function Splash() {
     ctx.fillStyle = "Black";
  
     if (En) {
-        ctx.fillText("Start Game!", w, 575);
+        ctx.fillText("Start Game!", w, 560);
+        ctx.font='900 20px Comic Sans MS';
+        ctx.fillText("Left Click or Press the Spacebar", w, 590);
     }
     if (Ger) {
-        ctx.fillText("Spiel beginnen!", w, 575);
+        ctx.fillText("Spiel beginnen!", w, 560);
+        ctx.font='900 20px Comic Sans MS';
+        ctx.fillText("Left Click or Press the Spacebar", w, 590);
     }
     if (Rom) {
-        ctx.fillText("Incepe jocul!", w, 575);
+        ctx.fillText("Incepe jocul!", w, 560);
+        ctx.font='900 20px Comic Sans MS';
+        ctx.fillText("Left Click or Press the Spacebar", w, 590);
     }
     if (Bul) {
-        ctx.fillText("Започни игра!", w, 575);
+        ctx.fillText("Започни игра!", w, 560);
+        ctx.font='900 20px Comic Sans MS';
+        ctx.fillText("Left Click or Press the Spacebar", w, 590);
     }
     if (Grk) {
         ctx.font='900 35px Arial';
-        ctx.fillText("Ξεκίνα το παιχνίδι!", w, 575);
+        ctx.fillText("Ξεκίνα το παιχνίδι!", w, 560);
+        ctx.font='900 20px Comic Sans MS';
+        ctx.fillText("Left Click or Press the Spacebar", w, 590);
     }
     if (Tuk) {
         ctx.font='900 35px Arial';
-        ctx.fillText("Oyunu başlatmak!", w, 575);
+        ctx.fillText("Oyunu başlatmak!", w, 560);
+        ctx.font='900 20px Comic Sans MS';
+        ctx.fillText("Left Click or Press the Spacebar", w, 590);
     }
 
     splEnd.path = new Path2D();
@@ -2054,7 +2066,37 @@ function InsEnd(e) {
 
 
 
+ function InsEndKey(e) {
+ 
+    if (keys[32]) {
+        if (speechOn) {         
+            if (En) {
+                letsGoAud.play();
+            }
+            if (Ger) {
+                letsGoAudGer.play();
+            }
+            if (Rom) {
+                letsGoAudRom.play();
+            }
+            if (Bul) {
+                letsGoAudBul.play();
+            }
+            if (Grk) {
+                letsGoAudGrk.play();
+            }
+            if (Tuk) {
+                letsGoAudTur.play();
+            }
+        }
 
+        insSc = false;
+        gameSc = true;
+        
+
+        removeEventListener("keydown", InsEndKey);
+    }  
+ } 
 
 
 
@@ -2139,7 +2181,9 @@ function Ins() {
     
     
     if (En) {
-        ctx.fillText("Let's Go!", w, 520);
+        ctx.fillText("Let's Go!", w, 500);
+        ctx.font='900 20px Comic Sans MS';
+        ctx.fillText("Left Click or Press the Spacebar", w, 535);
     }
     if (Ger) {
         ctx.font='900 35px Arial';
@@ -2164,6 +2208,7 @@ function Ins() {
     insEnd.path = new Path2D();
     insEnd.path.rect(w/2-40, 465, 450, 200);
     canvas.addEventListener("click", InsEnd);
+    addEventListener("keydown", InsEndKey);
 }
 
 // Set up Bowling Ball //
@@ -2177,7 +2222,7 @@ function SetBall(e) {
 
 function setBall() {
     nextLevel = false;
-    ctx.drawImage(setBowl, w/2-65, 225, 495, 265);
+    ctx.drawImage(setBowl, w/2-165, 225, 695, 265);
     setBowl.path = new Path2D();
     setBowl.path.rect(w/2-10, 350, 600, 400);
     ctx.font='900 22px Comic Sans MS';
@@ -2193,11 +2238,11 @@ function setBall() {
 
     if (En) {
         ctx.fillStyle = "black";
-        ctx.fillText("Move the position of the", w+10, 300);
-        ctx.fillText("football player by Left Clicking", w+10, 340);
+        ctx.fillText("Move the position of the football player", w+10, 300);
+        ctx.fillText("by Left Clicking or pressing the spacebar", w+10, 340);
         ctx.fillText("on the player", w, 380);
         ctx.fillStyle = "blue";
-        ctx.fillText("Then Right Click Here to Shoot!", w, 430);
+        ctx.fillText("Then Right Click or Pressing the enter key to Shoot!", w, 430);
         ctx.fillStyle = "black";
     }
     if (Ger) {
@@ -2326,6 +2371,18 @@ function setBall() {
          }
      } 
 
+         ///////////////////////////////////////
+         function Round2Key() {
+            if (keys[32]) {    
+                Rd();
+                round2 = false;
+                thd = true;
+                randomGoal = Math.floor(Math.random() * 1) + 1;
+                removeEventListener("keydown", Round2Key);
+         }
+        }
+        //////////////////////////////////////////
+
      function Round3(e) {
         if (ctx.isPointInPath(r2.path, e.offsetX, e.offsetY)) {
             Rd();
@@ -2335,6 +2392,18 @@ function setBall() {
             canvas.removeEventListener("click", Round3);
          }
      } 
+
+      ///////////////////////////////////////
+      function Round3Key() {
+        if (keys[32]) {    
+            Rd();
+            round3 = false;
+            foth = true;
+            randomGoal = Math.floor(Math.random() * 1) + 1;
+            removeEventListener("keydown", Round3Key);
+     }
+    }
+    //////////////////////////////////////////
 
      function Round4(e) {
         if (ctx.isPointInPath(r2.path, e.offsetX, e.offsetY)) {
@@ -2618,30 +2687,35 @@ function setBall() {
             levels();
             sec = false;
             canvas.addEventListener("click", Round2);
+            addEventListener("keydown", Round2Key);
         }
 
         if (round3) {
             levels();
             thd = false;
             canvas.addEventListener("click", Round3);
+            addEventListener("keydown", Round3Key);
         }
 
         if (round4) {
             levels();
             foth = false;
             canvas.addEventListener("click", Round4);
+            //addEventListener("keydown", Round4Key);
         }
 
         if (round5) {
             levels();
             fith = false;
             canvas.addEventListener("click", Round5);
+            //addEventListener("keydown", Round5Key);
         }
 
         if (round6) {
             levels();   
             six = false;
             canvas.addEventListener("click", Round6);
+            //addEventListener("keydown", Round6Key);
         }
 
         if (end) {
@@ -2790,6 +2864,7 @@ function setBall() {
             lastScreen = false;
        
             canvas.addEventListener("click", End);
+            //addEventListener("keydown", EndKey);
 
         }
 
@@ -2858,9 +2933,16 @@ function setBall() {
     function rolling() {
 
 
+/////////////////////////////////////////
 
+// Keyboard controls
+if (keys[13]) {     
+    clickLeft = false;
+    SetBalltrue = false;
+    bowlRse = true;
+ }
 
-
+//////////////////////////////////////////////////
 
 
     window.addEventListener('contextmenu', (e) => {
@@ -3006,7 +3088,6 @@ function setBall() {
 
 
 function playerLck(e) {
-
 if (blueFP) {
     if (ctx.isPointInPath(blueL.path, e.offsetX, e.offsetY)) {  
         footballPlayer = false;
@@ -3020,11 +3101,27 @@ if (redFP) {
         canvas.removeEventListener("click", playerLck);
      }
 }
+}
 
- }
+function playerLckKey() {
+    if (blueFP) {
+        if (keys[32]) {  
+            footballPlayer = false;
+            //alert("moooooooooooooooooooooooooo");
+            removeEventListener("keydown", playerLckKey);
+         }
+    }
+    
+    if (redFP) {
+         if (keys[32]) {
+            footballPlayer = false;
+            //alert("moooooooooooooooooooooooooo");
+            removeEventListener("keydown", playerLckKey);
+         }
+    }
+}
 
 function playerRck(e) {
-
 if (blueFP) {
     if (ctx.isPointInPath(blueR.path, e.offsetX, e.offsetY)) {
         footballPlayer = true;
@@ -3038,8 +3135,25 @@ if (redFP) {
         canvas.removeEventListener("click", playerRck);
     }
 }
+}
 
- }
+ function playerRckKey() {
+ if (blueFP) {
+    if (keys[32]) {  
+        footballPlayer = true;
+        //alert("moooooooooooooooooooooooooo");
+        removeEventListener("keydown", playerRckKey);
+     }
+}
+
+if (redFP) {
+     if (keys[32]) {
+        footballPlayer = true;
+        //alert("moooooooooooooooooooooooooo");
+        removeEventListener("keydown", playerRckKey);
+     }
+}
+}
 
 function Game() {
 
@@ -3062,6 +3176,8 @@ function Game() {
             blueL.path = new Path2D();
             blueL.path.rect(w-170, 480, 170, 260);
             canvas.addEventListener("click", playerLck);
+
+            addEventListener("keydown", playerLckKey);
         }
 
         if (redFP) {
@@ -3069,6 +3185,8 @@ function Game() {
             redL.path = new Path2D();
             redL.path.rect(w-170, 480, 170, 260);
             canvas.addEventListener("click", playerLck);
+
+            addEventListener("keydown", playerLckKey);
         }
     
     }
@@ -3080,6 +3198,8 @@ function Game() {
             blueR.path = new Path2D();
             blueR.path.rect(w+2, 480, 170, 260);
             canvas.addEventListener("click", playerRck);
+
+            addEventListener("keydown", playerRckKey);
         }
 
         if (redFP) {
@@ -3087,6 +3207,8 @@ function Game() {
             redR.path = new Path2D();
             redR.path.rect(w+2, 480, 170, 260);
             canvas.addEventListener("click", playerRck);
+
+            addEventListener("keydown", playerRckKey);
         } 
     }
 
