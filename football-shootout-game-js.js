@@ -2,9 +2,10 @@
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
 
+
 var clickRightTrue = true;
 
-settingsKeyIns = false;
+var settingsKeyIns = false;
 
 var KeyboardMenu = false;
 var KeyMenu1 = false;
@@ -285,9 +286,18 @@ happy.src = "images/happy.png";
 
 // Keyboard Instructions
 function endInsKey() {
+
+
+    //alert("settingsKeyIns is " + settingsKeyIns);
+
+
+    
+    if (!gameSc) {
     if (keys[32]) {
         settingsKeyIns = false;
+        //alert("setMenu is " + setMenu);
         removeEventListener("keydown", endInsKey);
+    }
     }
 }
 
@@ -301,7 +311,7 @@ function switchKeysM1(e) {
         MSw1 = false;
         MSw2 = true;
 
-        removeEventListener("keydown", switchKeysM1, false);
+        removeEventListener("keydown", switchKeysM1);
     }
     }
 }
@@ -317,7 +327,7 @@ function switchKeysM2(e) {
     MSw3 = true;
 
     
-    removeEventListener("keydown", switchKeysM2, false);
+    removeEventListener("keydown", switchKeysM2);
     }
     }
 }
@@ -332,7 +342,7 @@ function switchKeysM3(e) {
         MSw3 = false;
         MSw4 = true;
 
-        removeEventListener("keydown", switchKeysM3, false);
+        removeEventListener("keydown", switchKeysM3);
     }
     }
 }
@@ -347,7 +357,7 @@ function switchKeysM4(e) {
         MSw4 = false;
         MSw5 = true;
 
-        removeEventListener("keydown", switchKeysM4, false);
+        removeEventListener("keydown", switchKeysM4);
     }
     }
 }
@@ -362,7 +372,7 @@ function switchKeysM5(e) {
         MSw5 = false;
         MSw6 = true;
   
-        removeEventListener("keydown", switchKeysM5, false);
+        removeEventListener("keydown", switchKeysM5);
     }
     }
 }
@@ -377,7 +387,7 @@ function switchKeysM6(e) {
         MSw6 = false;    
         MSw7 = true;
 
-        removeEventListener("keydown", switchKeysM6, false);
+        removeEventListener("keydown", switchKeysM6);
     }
     }
 }
@@ -392,7 +402,7 @@ function switchKeysM7(e) {
         MSw7 = false;
         MSw8 = true;
 
-        removeEventListener("keydown", switchKeysM7, false);
+        removeEventListener("keydown", switchKeysM7);
     }
     }
 }
@@ -407,7 +417,7 @@ function switchKeysM8(e) {
         MSw8 = false;
         MSw9 = true;
 
-        removeEventListener("keydown", switchKeysM8, false);
+        removeEventListener("keydown", switchKeysM8);
     }
     }
 }
@@ -422,7 +432,7 @@ function switchKeysM9(e) {
         MSw9 = false;
         MSw10= true;
        
-        removeEventListener("keydown", switchKeysM9, false);
+        removeEventListener("keydown", switchKeysM9);
     }
     }
 }
@@ -437,7 +447,7 @@ function switchKeysM10(e) {
         MSw10 = false;
         MSw11 = true;
 
-        removeEventListener("keydown", switchKeysM10, false);
+        removeEventListener("keydown", switchKeysM10);
     }
     }
 }
@@ -452,7 +462,7 @@ function switchKeysM11(e) {
         MSw11 = false;
         MSw12 = true;
 
-        removeEventListener("keydown", switchKeysM11, false);
+        removeEventListener("keydown", switchKeysM11);
     }
     }
 }
@@ -467,7 +477,7 @@ function switchKeysM12(e) {
         MSw12 = false;
         MSw13 = true;
 
-        removeEventListener("keydown", switchKeysM12, false);
+        removeEventListener("keydown", switchKeysM12);
     }
     }
 }
@@ -482,7 +492,7 @@ function switchKeysM13(e) {
         MSw13 = false;
         MSw14 = true;
 
-        removeEventListener("keydown", switchKeysM13, false);
+        removeEventListener("keydown", switchKeysM13);
     }
     }
 }
@@ -497,7 +507,7 @@ function switchKeysM14(e) {
         MSw14 = false;
         MSw15 = true;
 
-        removeEventListener("keydown", switchKeysM14, false);
+        removeEventListener("keydown", switchKeysM14);
     }
     }
 }
@@ -512,10 +522,216 @@ function switchKeysM15(e) {
         MSw15 = false;
         MSw1 = true;
 
-        removeEventListener("keydown", switchKeysM15, false);
+        removeEventListener("keydown", switchKeysM15);
     }
     }
 }
+
+
+
+
+
+// 12/1/23
+
+function MustickTKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu1 && MSw1) {
+            musicOn=true;
+            removeEventListener("keydown", MustickTKey);
+        }
+    } // setMenu
+}
+
+function MustickFKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu2 && MSw2) {
+            musicOn=false;
+            removeEventListener("keydown", MustickFKey);
+        }
+    } // setMenu
+}
+
+/////End of Mouse music Change///////////////////
+/////////////////////////////////////////////////
+
+
+////// speech change ///////////////////
+///////////////////////////////////////
+
+function SptickTKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu3 && MSw3) {
+            speechOn=true;
+            removeEventListener("keydown", SptickTKey);
+        }
+    } // setMenu
+}
+
+function SptickFKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu4 && MSw4) {
+            speechOn=false;
+            removeEventListener("keydown", SptickFKey);
+        }
+    } // setMenu
+}
+
+/////End of Mouse speech Change///////////////////
+/////////////////////////////////////////////////
+
+////// translate change ///////////////////
+///////////////////////////////////////
+
+function enOnKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu5 && MSw5) {
+            En=true;
+            Ger=false;
+            Rom=false;
+            Bul=false;
+            Grk=false;
+            Tuk=false;
+            removeEventListener("keydown", enOnKey);
+        }
+    }
+}
+
+function gerOnKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu6 && MSw6) {
+            En=false;
+            Ger=true;
+            Rom=false;
+            Bul=false;
+            Grk=false;
+            Tuk=false;
+            removeEventListener("keydown", gerOnKey);
+        }
+    }
+}
+
+function romOnKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu7 && MSw7) {
+            En=false;;
+            Ger=false;
+            Rom=true;
+            Bul=false;
+            Grk=false;
+            Tuk=false;
+            removeEventListener("keydown", romOnKey);
+        }
+    }
+}
+
+function bulOnKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu8 && MSw8) {
+            En=false;
+            Ger=false;
+            Rom=false;
+            Bul=true;
+            Grk=false;
+            Tuk=false;
+            removeEventListener("keydown", bulOnKey);
+        }
+    }
+}
+
+function grkOnKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu9 && MSw9) {
+            En=false;
+            Ger=false;
+            Rom=false;
+            Bul=false;
+            Grk=true;
+            Tuk=false;
+            removeEventListener("keydown", grkOnKey);
+        }
+    }
+}
+
+function turOnKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu10 && MSw10) {
+            En=false;
+            Ger=false;
+            Rom=false;
+            Bul=false;
+            Grk=false;
+            Tuk=true;
+            removeEventListener("keydown", turOnKey);
+        }
+    }
+}
+
+/////End of translate speech Change///////////////////
+/////////////////////////////////////////////////
+
+////// effects change ///////////////////
+///////////////////////////////////////
+
+function effectsTKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu11 && MSw11) {
+            effectsOn=true;
+            removeEventListener("keydown", effectsTKey);
+        }
+    } // setMenu
+}
+
+function effectsFKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu12 && MSw12) {
+            effectsOn=false;
+            removeEventListener("keydown", effectsFKey);
+        }
+    } // setMenu
+}
+
+/////End of Mouse effects Change///////////////////
+/////////////////////////////////////////////////
+
+
+
+
+ // Teams
+ function teamsTKey() {
+    if (setMenu && !gameSc) {
+        if (keys[13] && KeyMenu13 && MSw13 && !gameSc) {
+            blueFP = true;
+            redFP = false;
+            removeEventListener("keydown", teamsTKey);
+        }
+    }
+}
+
+function teamsFKey() {
+    if (setMenu && !gameSc) {
+        if (keys[13] && KeyMenu14 && MSw14 && !gameSc) {
+            blueFP = false;
+            redFP = true;
+            removeEventListener("keydown", teamsFKey);
+        }
+    }
+}
+
+
+// End Mouse Menu and return to game //
+function endMenuKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu15 && MSw15) {
+
+            setMenu=false;
+            insSc=false;
+            splashSc=true;
+
+            removeEventListener("keydown", endMenuKey);
+        }
+    }
+}
+
 
 
 
@@ -902,6 +1118,9 @@ function showMenu() {
 
     canvas.addEventListener("click", MustickT);
     canvas.addEventListener("click", MustickF);
+
+    addEventListener("keydown", MustickTKey);
+    addEventListener("keydown", MustickFKey);
     // End of Music
 
 
@@ -1023,6 +1242,9 @@ function showMenu() {
 
     canvas.addEventListener("click", SptickT);
     canvas.addEventListener("click", SptickF);
+
+    addEventListener("keydown", SptickTKey);
+    addEventListener("keydown", SptickFKey);
 
     // End of Speech
 
@@ -1309,6 +1531,16 @@ if (KeyboardMenu) {
     canvas.addEventListener("click", bulOn);
     canvas.addEventListener("click", grkOn);
     canvas.addEventListener("click", turOn);
+
+
+    if (KeyboardMenu && !gameSc) {
+        addEventListener("keydown", enOnKey);
+        addEventListener("keydown", gerOnKey);
+        addEventListener("keydown", romOnKey);
+        addEventListener("keydown", bulOnKey);
+        addEventListener("keydown", grkOnKey);
+        addEventListener("keydown", turOnKey);
+        }
     
 
     
@@ -1430,6 +1662,9 @@ if (KeyboardMenu) {
 
     canvas.addEventListener("click", effectsT);
     canvas.addEventListener("click", effectsF);
+
+    addEventListener("keydown", effectsTKey);
+    addEventListener("keydown", effectsFKey);
 
     // End of Effects
 
@@ -1655,6 +1890,9 @@ if (KeyboardMenu) {
     canvas.addEventListener("click", teamsB);
     canvas.addEventListener("click", teamsR);
 
+    addEventListener("keydown", teamsTKey);
+    addEventListener("keydown", teamsFKey);
+
     // End of Player Selection
 
 
@@ -1681,175 +1919,76 @@ if (KeyboardMenu) {
     cross.path = new Path2D();
     cross.path.rect(w-30, 675, 50, 50);
 
+
     canvas.addEventListener("click", endMenu);
+    addEventListener("keydown", endMenuKey);
 
 
 
     //////////////////////////////////30/12/22
 
 
-    if (MSw1) {
+    if (MSw1 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM1);
     }
     
-    if (MSw2) {
+    if (MSw2 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM2);
     }
     
-    if (MSw3) {
+    if (MSw3 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM3);
     }
     
-    if (MSw4) {
+    if (MSw4 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM4);
     }
     
     
-    if (MSw5) {
+    if (MSw5 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM5);
     }
     
-    if (MSw6) {
+    if (MSw6 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM6);
     }
     
-    if (MSw7) {
+    if (MSw7 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM7);
     }
     
     
-    if (MSw8) {
+    if (MSw8 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM8);
     }
     
-    if (MSw9) {
+    if (MSw9 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM9);
     }
     
-    if (MSw10) {
+    if (MSw10 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM10);
     }
     
-    if (MSw11) {
+    if (MSw11 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM11);
     }
     
-    if (MSw12) {
+    if (MSw12 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM12);
     }
     
-    if (MSw13) {
+    if (MSw13 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM13);
     }
 
-    if (MSw14) {
+    if (MSw14 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM14);
     }
     
     // End of Menu //
-    if (MSw15) {
+    if (MSw15 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM15);
-    }
-    
-    if (setMenu) {
-        if (keys[13] && KeyMenu1 && MSw1 && !gameSc) {
-            musicOn=false;
-        }
-    
-        if (keys[13] && KeyMenu2 && MSw2 && !gameSc) {
-            musicOn=false;
-        }
-    
-        
-        if (keys[13] && KeyMenu3 && MSw3 && !gameSc) {
-            speechOn = true;
-        }
-    
-        if (keys[13] && KeyMenu4 && MSw4 && !gameSc) {
-            speechOn = false;
-        }
-    
-        if (keys[13] && KeyMenu5 && MSw5 && !gameSc) {
-            En=true;
-            Ger=false;
-            Rom=false;
-            Bul=false;
-            Grk=false;
-            Tuk=false;
-        }
-    
-        if (keys[13] && KeyMenu6 && MSw6 && !gameSc) {
-            En=false;
-            Ger=true;
-            Rom=false;
-            Bul=false;
-            Grk=false;
-            Tuk=false;
-        }
-    
-        if (keys[13] && KeyMenu7 && MSw7 && !gameSc) {
-            En=false;
-            Ger=false;
-            Rom=true;
-            Bul=false;
-            Grk=false;
-            Tuk=false;
-        }
-    
-    
-        if (keys[13] && KeyMenu8 && MSw8 && !gameSc) {
-            En=false
-            Ger=false;
-            Rom=false;
-            Bul=true;
-            Grk=false;
-            Tuk=false;
-        }
-    
-        if (keys[13] && KeyMenu9 && MSw9 && !gameSc) {
-            En=false;
-            Ger=false;
-            Rom=false;
-            Bul=false;
-            Grk=true;
-            Tuk=false;
-        }
-    
-        if (keys[13] && KeyMenu10 && MSw10 && !gameSc) {
-            En=false;
-            Ger=false;
-            Rom=false;
-            Bul=false;
-            Grk=false;
-            Tuk=true
-        }
-    
-        // Effects
-        if (keys[13] && KeyMenu11 && MSw11 && !gameSc) {
-            effectsOn = true;
-        }
-    
-        if (keys[13] && KeyMenu12 && MSw12 && !gameSc) {
-            effectsOn = false;
-        }
-    
-        // Teams
-        if (keys[13] && KeyMenu13 && MSw13 && !gameSc) {
-            blueFP = true;
-            redFP = false;
-        }
-
-        if (keys[13] && KeyMenu14 && MSw14 && !gameSc) {
-            blueFP = false;
-            redFP = true;
-        }
-
-
-        // End of Menu
-        if (keys[13] && KeyMenu15 && MSw15 && !gameSc) {
-            setMenu = false;
-        }
-    
     }
 
 
@@ -1872,11 +2011,11 @@ function SplashEnd(e) {
         }
     }
 
-    function SplashEndKey(e) {
+    function SplashEndKey() {
         if (keys[32]) {
             splashSc = false;
             insSc = true;
-            removeEventListener("click", SplashEndKey);
+            removeEventListener("keydown", SplashEndKey);
         }
      }
 
@@ -1887,8 +2026,8 @@ function settingsOpen(e) {
         }
     }
 
-    function settingsOpenKey(e) {
-        if (keys[13]) {
+    function settingsOpenKey() {
+        if (keys[13] && !gameSc) {
             KeyboardMenu = true;
             settingsKeyIns = true;
             KeyMenu1 = true;
@@ -2069,6 +2208,7 @@ function InsEnd(e) {
  function InsEndKey() {
  
     if (keys[32]) {
+        
         if (speechOn) {         
             if (En) {
                 letsGoAud.play();
@@ -2092,6 +2232,9 @@ function InsEnd(e) {
 
         insSc = false;
         gameSc = true;
+
+
+  
         
 
         removeEventListener("keydown", InsEndKey);
@@ -2208,7 +2351,9 @@ function Ins() {
 
     insEnd.path = new Path2D();
     insEnd.path.rect(w/2-40, 465, 450, 200);
+
     canvas.addEventListener("click", InsEnd);
+
     addEventListener("keydown", InsEndKey);
 }
 
@@ -2222,14 +2367,15 @@ function SetBall(e) {
 }
 
 function SetBallKey() {
-    setMenu=false;
-    if (keys[13]) {
+    if (keys[13]) {      
         Rolling = true;
         clickRightTrue = true;
+        //removeEventListener("keydown", SetBallKey);
     }
 }
 
 function setBall() {
+
     nextLevel = false;
     ctx.drawImage(setBowl, w/2-165, 225, 695, 265);
     setBowl.path = new Path2D();
@@ -2373,6 +2519,7 @@ function setBall() {
     function Round2(e) {
         if (ctx.isPointInPath(r2.path, e.offsetX, e.offsetY)) {
             Rd();
+            
             round2 = false;
             thd = true;
             randomGoal = Math.floor(Math.random() * 1) + 1;
@@ -2407,7 +2554,7 @@ function setBall() {
       ///////////////////////////////////////
       function Round3Key() {
         if (keys[32]) { 
-            setMenu=false; 
+            setMenu=false;
             Rd();
             round3 = false;
             foth = true;
@@ -2559,7 +2706,7 @@ function setBall() {
             roundsEnd = false;
             firstRd = false;
             //randomGoal = Math.floor(Math.random() * 1) + 1;
-            removeEventListener("click", EndKey);
+            removeEventListener("keydown", EndKey);
          }
      } 
 
@@ -3192,7 +3339,6 @@ function playerLckKey() {
     if (blueFP) {
         if (keys[32]) {  
             footballPlayer = false;
-            //alert("moooooooooooooooooooooooooo");
             removeEventListener("keydown", playerLckKey);
          }
     }
@@ -3200,7 +3346,6 @@ function playerLckKey() {
     if (redFP) {
          if (keys[32]) {
             footballPlayer = false;
-            //alert("moooooooooooooooooooooooooo");
             removeEventListener("keydown", playerLckKey);
          }
     }
@@ -3226,7 +3371,6 @@ if (redFP) {
  if (blueFP) {
     if (keys[32]) {  
         footballPlayer = true;
-        //alert("moooooooooooooooooooooooooo");
         removeEventListener("keydown", playerRckKey);
      }
 }
@@ -3234,7 +3378,6 @@ if (redFP) {
 if (redFP) {
      if (keys[32]) {
         footballPlayer = true;
-        //alert("moooooooooooooooooooooooooo");
         removeEventListener("keydown", playerRckKey);
      }
 }
@@ -3318,7 +3461,7 @@ function playGame() {
         Ins();
     }  
     
-    if (gameSc) {
+    if (gameSc && !setMenu) {
   
         Game();
 
