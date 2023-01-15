@@ -2137,29 +2137,30 @@ function Splash() {
     if (Ger) {
         ctx.fillText("Spiel beginnen!", w, 560);
         ctx.font='900 20px Comic Sans MS';
-        ctx.fillText("Left Click or Press the Spacebar", w, 590);
+        ctx.fillText("Klicken Sie mit der linken Maustaste", w, 595);
+        ctx.fillText("oder drücken Sie die Leertaste", w, 615);
     }
     if (Rom) {
         ctx.fillText("Incepe jocul!", w, 560);
-        ctx.font='900 20px Comic Sans MS';
-        ctx.fillText("Left Click or Press the Spacebar", w, 590);
+        ctx.font='900 15px Comic Sans MS';
+        ctx.fillText("Faceți clic stânga sau apăsați pe bara de spațiu", w, 590);
     }
     if (Bul) {
         ctx.fillText("Започни игра!", w, 560);
-        ctx.font='900 20px Comic Sans MS';
-        ctx.fillText("Left Click or Press the Spacebar", w, 590);
+        ctx.font='900 14px Comic Sans MS';
+        ctx.fillText("Щракнете с левия бутон или натиснете интервала", w, 590);
     }
     if (Grk) {
         ctx.font='900 35px Arial';
         ctx.fillText("Ξεκίνα το παιχνίδι!", w, 560);
-        ctx.font='900 20px Comic Sans MS';
-        ctx.fillText("Left Click or Press the Spacebar", w, 590);
+        ctx.font='900 15px Comic Sans MS';
+        ctx.fillText("Αριστερό κλικ ή Πατήστε το πλήκτρο διαστήματος", w, 590);
     }
     if (Tuk) {
         ctx.font='900 35px Arial';
         ctx.fillText("Oyunu başlatmak!", w, 560);
-        ctx.font='900 20px Comic Sans MS';
-        ctx.fillText("Left Click or Press the Spacebar", w, 590);
+        ctx.font='900 19px Comic Sans MS';
+        ctx.fillText("Sol Tıklayın veya Boşluk Çubuğuna Basın", w, 590);
     }
 
     splEnd.path = new Path2D();
@@ -2331,22 +2332,33 @@ function Ins() {
     }
     if (Ger) {
         ctx.font='900 35px Arial';
-        ctx.fillText("Lass uns gehen!", w, 505);
+        ctx.fillText("Lass uns gehen!", w, 490);
+        ctx.font='900 20px Comic Sans MS';
+        ctx.fillText("Klicken Sie mit der linken Maustaste", w, 535);
+        ctx.fillText("oder drücken Sie die Leertaste", w, 555);
     }
     if (Rom) {
         ctx.font='900 35px Arial';
-        ctx.fillText("Sa mergem!", w, 510);
+        ctx.fillText("Sa mergem!", w, 500);
+        ctx.font='900 15px Comic Sans MS';
+        ctx.fillText("Faceți clic stânga sau apăsați pe bara de spațiu", w, 535);
     }
     if (Bul) {
-        ctx.fillText("Да тръгваме!", w, 514);
+        ctx.fillText("Да тръгваме!", w, 500);
+        ctx.font='900 14px Comic Sans MS';
+        ctx.fillText("Щракнете с левия бутон или натиснете интервала", w, 535);
     }
     if (Grk) {
         ctx.font='900 35px Arial';
-        ctx.fillText("Πάμε!", w, 510);
+        ctx.fillText("Πάμε!", w, 500);
+        ctx.font='900 16px Comic Sans MS';
+        ctx.fillText("Αριστερό κλικ ή Πατήστε το πλήκτρο διαστήματος", w, 535);
     }
     if (Tuk) {
         ctx.font='900 35px Arial';
-        ctx.fillText("Hadi gidelim!", w, 510);
+        ctx.fillText("Hadi gidelim!", w, 480);
+        ctx.font='900 17px Comic Sans MS';
+        ctx.fillText("Sol Tıklayın veya Boşluk Çubuğuna Basın", w, 535);
     }
 
     insEnd.path = new Path2D();
@@ -2396,40 +2408,44 @@ function setBall() {
         ctx.fillText("Move the position of the football player", w+10, 300);
         ctx.fillText("by Left Clicking or pressing the spacebar", w+10, 340);
         ctx.fillText("on the player", w, 380);
+
         ctx.fillStyle = "blue";
         ctx.fillText("Then Right Click or Pressing the enter key to Shoot!", w, 430);
         ctx.fillStyle = "black";
     }
     if (Ger) {
-        ctx.fillText("Verschieben Sie die Position der", w+10, 300);
-        ctx.fillText("Fußballspieler durch Linksklick", w+10, 330);
+        ctx.fillText("Bewegen Sie die Position des Fußballspielers", w+10, 300);    
+        ctx.fillText("durch Linksklick oder Drücken der Leertaste", w+10, 330);
         ctx.fillText("auf dem Spieler", w, 360);
 
         ctx.fillStyle = "blue";
-        ctx.fillText("Dann Rechtsklick", w+5, 410);
-        ctx.fillText("Hier zum Schießen!", w+5, 440);
+        ctx.fillText("Klicken Sie dann mit der rechten Maustaste", w+5, 410);
+        ctx.fillText("oder drücken Sie die Eingabetaste, um zu schießen!", w+5, 440);
         ctx.fillStyle = "black";
-    }
+
+    } 
     if (Rom) {
-        ctx.fillText("Mutați poziția", w+10, 300);
-        ctx.fillText("fotbalist prin clic stânga", w+10, 330);
+        ctx.fillText("Mutați poziția jucătorului de fotbal", w+10, 300);
+        ctx.fillText("făcând clic stânga sau apăsând bara de spațiu", w+10, 330);
         ctx.fillText("pe player", w, 360);
 
         ctx.fillStyle = "blue";
-        ctx.fillText("Apoi faceți clic dreapta", w+5, 410);
-        ctx.fillText("Aici să împușcăm!", w+5, 440);
+        ctx.fillText("Apoi faceți clic dreapta sau apăsând", w+5, 410);
+        ctx.fillText("tasta Enter pentru a trage!", w+5, 440);
         ctx.fillStyle = "black";
+         
     }
     if (Bul) {
         ctx.font='900 21px Comic Sans MS';  
-        ctx.fillText("Преместете позицията на", w+10, 300);
-        ctx.fillText("футболист с ляв клик", w+10, 330);
+        ctx.fillText("Преместете позицията на футболиста", w+10, 300);
+        ctx.fillText("като щракнете с левия бутон или натиснете интервала", w+10, 330);
         ctx.fillText("на плейъра", w, 360);
 
         ctx.fillStyle = "blue";
-        ctx.fillText("След това щракнете с десния бутон", w+5, 410);
-        ctx.fillText("Тук за стрелба!", w+5, 440);
+        ctx.fillText("След това щракнете с десния бутон или ", w+5, 410);
+        ctx.fillText("натиснете клавиша enter, за да стреляте!", w+5, 440);
         ctx.fillStyle = "black";
+        
     }
     if (Grk) {
         ctx.font='900 24px Comic Sans MS';  
@@ -2862,26 +2878,32 @@ function setBall() {
 
 
         ctx.fillStyle = "black";
-        ctx.font='900 21px Comic Sans MS';
+        
 
         if (!roundsEnd) {
             
             if (En) {
+                ctx.font='900 21px Comic Sans MS';
                 ctx.fillText("Click here or Press the Spacebar for the next penalty!", w, 440);
             }
             if (Ger) {
+                ctx.font='900 17px Comic Sans MS';
                 ctx.fillText("Klicken Sie hier oder drücken Sie die Leertaste für die nächste Strafe!", w, 440);//
             }
             if (Rom) {
+                ctx.font='900 16px Comic Sans MS';
                 ctx.fillText("Faceți clic aici sau apăsați pe bara de spațiu pentru următoarea penalizare!", w, 440);//
             }
             if (Bul) {
+                ctx.font='900 19px Comic Sans MS';
                 ctx.fillText("Щракнете тук или натиснете интервала за следващата дузпа!", w, 440);//
             }
             if (Grk) {
+                ctx.font='900 17px Comic Sans MS';
                 ctx.fillText("Κάντε κλικ εδώ ή πατήστε το πλήκτρο διαστήματος για την επόμενη ποινή!", w, 440);//
             }
             if (Tuk) {
+                ctx.font='900 17px Comic Sans MS';
                 ctx.fillText("Bir sonraki ceza için buraya tıklayın veya Ara Çubuğuna basın!", w, 440);//
             }
         }
@@ -2961,7 +2983,7 @@ function setBall() {
             saved = false;
             hitPost = false;
             
-            ctx.drawImage(r3, w/2-100, 160, 565, 380);
+            ctx.drawImage(r3, w/2-170, 160, 705, 380);
             ctx.textAlign = "center"; 
             ctx.font='900 70px Comic Sans MS';
             ctx.fillStyle = "blue";
